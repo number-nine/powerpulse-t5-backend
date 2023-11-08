@@ -5,7 +5,7 @@ const { schemas } = require("../../models/user");
 
 const router = express.Router();
 
-router.post("/register", validateBody(schemas.signup), userCtrl.signup);
+router.post("/register", validateBody(schemas.register), userCtrl.register);
 router.get("/verify/:verificationToken", userCtrl.verifyEmail);
 router.post(
   "/verify",
@@ -23,7 +23,7 @@ router.patch(
   userCtrl.updatePassword
 );
 
-router.post("/login", validateBody(schemas.signin), userCtrl.signin);
+router.post("/login", validateBody(schemas.login), userCtrl.login);
 router.get("/current", authenticate, userCtrl.current);
 router.post("/logout", authenticate, userCtrl.logout);
 
