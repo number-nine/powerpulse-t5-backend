@@ -4,9 +4,8 @@ const cors = require("cors");
 const { HttpError } = require("./helpers");
 const path = require("path");
 
-// const contactsRouter = require("./routes/api/contacts");
 const authRouter = require("./routes/api/auth");
-// const userRouter = require('./routes/api/users');
+const userRouter = require('./routes/api/users');
 
 const STATIC_PATH = path.join(__dirname, "public");
 
