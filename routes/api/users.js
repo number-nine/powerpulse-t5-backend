@@ -9,8 +9,10 @@ const router = express.Router();
 
 router.patch("/avatars", authenticate, upload.single("avatar"), userCtrl.updateAvatar);
 
+router.get("/profiles", authenticate, userCtrl.getProfile);
+
 router.patch(
-  "/profile",
+  "/profiles",
   authenticate,
   validateBody(profileSchemas.createProfile),
   userCtrl.updateProfile

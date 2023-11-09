@@ -8,9 +8,6 @@ const bloodType = [1, 2, 3, 4];
 const levelActivityType = [1, 2, 3, 4, 5];
 const minAge = 568025136000; // 18 year to ms
 
-// function isValidAge(date) {
-//   return Date.now() - new Date(date) >= minAge;
-// }
 
 const profileSchema = new Schema(
   {
@@ -24,41 +21,41 @@ const profileSchema = new Schema(
     height: {
       type: Number,
       min: 150,
-      require: [true, "Define user height"],
+      required: [true, "Define user height"],
     },
 
     currentWeight: {
       type: Number,
-      require: [true, "Define current user weight"],
+      required: [true, "Define current user weight"],
       min: 35,
     },
 
     desiredWeight: {
       type: Number,
-      require: [true, "Define desired user weight"],
+      required: [true, "Define desired user weight"],
       min: 35,
     },
 
     sex: {
       type: String,
-      require: [true, "Define user sex"],
+      required: [true, "Define user sex"],
       enum: sexType,
     },
 
     blood: {
       type: Number,
-      require: [true, "Define user blood group"],
+      required: [true, "Define user blood group"],
       enum: bloodType,
     },
 
     levelActivity: {
       type: Number,
-      require: [true, "Define user activity level"],
+      required: [true, "Define user activity level"],
       enum: levelActivityType,
     },
     birthday: {
       type: Date,
-      require: [true, "Define user birthday"],
+      required: [true, "Define user birthday"],
     },
   },
   { versionKey: false }

@@ -4,7 +4,7 @@ const productSchema = new Schema(
   {
     title: {
       type: String,
-      require: [true, "Define product title"],
+      required: [true, "Define product title"],
     },
     weight: {
       type: Number,

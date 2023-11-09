@@ -8,6 +8,7 @@ const resendVerification = require('./resendVerification');
 const restorePasswordToken = require("./restorePasswordToken");
 const updatePassword = require("./updatePassword");
 const updateProfile = require("./updateProfile")
+const getProfile = require("./getProfile");
 
 /* Development */
 
@@ -30,4 +31,5 @@ module.exports = {
   viewDev,
   deleteDev,
   updateProfile,
+  getProfile,
 };

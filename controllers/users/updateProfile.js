@@ -1,22 +1,27 @@
-const { User } = require("../../models/user");
+// const { User } = require("../../models/user");
 const { Profile } = require("../../models/profile");
-const { HttpError, ctrlWrapper } = require("../../helpers");
+const { ctrlWrapper } = require("../../helpers");
 
 const updateProfile = async (req, res) => {
   const { _id: id } = req.user;
-    const { height } = req.body;
-  // const user = await User.findOne({ _id: id });
-  //  if (!user) throw HttpError(401, "No such user");
+  let profile = await Profile.findOne({ owner: id });
+  if (profile) {
+    profile = await Profile.findByIdAndUpdate(
+      profile._id,
+      { ...req.body },
+      {
+        new: true,
+      }
+    ).populate("owner", "name email");
+  } else {
+    profile = await Profile.create({
+      owner: id,
+      ...req.body,
+    });
+    profile = await profile.populate("owner", "name email");
+  }
 
-  const profile = await Profile.create({
-    owner: id,
-    // ...req.body
-    height,
-  });
-
-  res.json({
-    profile,
-  });
+  res.json(profile);
 };
 
 module.exports = ctrlWrapper(updateProfile);
