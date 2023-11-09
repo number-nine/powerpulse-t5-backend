@@ -70,12 +70,19 @@ const updatePassword = Joi.object({
   password: Joi.string().min(6).max(24).required(),
 });
 
+const emailDev = Joi.object({
+  email: Joi.string().pattern(patterns.email).required()
+});
+
 const schemas = {
   register,
   login,
   emailRequest,
   updatePassword,
+  emailDev,
 };
+
+
 
 module.exports = {
   schemas,
