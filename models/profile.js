@@ -6,31 +6,37 @@ const { handleMongooseError } = require("../helpers");
 const sexType = ["male", "female"];
 const bloodType = [1, 2, 3, 4];
 const levelActivityType = [1, 2, 3, 4, 5];
+const minAge = 568025136000; // 18 year to ms
+
+// function isValidAge(date) {
+//   return Date.now() - new Date(date) >= minAge;
+// }
 
 const profileSchema = new Schema(
   {
-    user: {
+    owner: {
       type: Schema.Types.ObjectId,
       ref: "user",
       required: true,
+      unique: true,
     },
 
     height: {
       type: Number,
-      require: [true, "Define user height"],
       min: 150,
+      require: [true, "Define user height"],
     },
 
     currentWeight: {
       type: Number,
       require: [true, "Define current user weight"],
-      min: [35, "Min weight is 35kg"],
+      min: 35,
     },
 
     desiredWeight: {
       type: Number,
       require: [true, "Define desired user weight"],
-      min: [35, "Min weight is 35kg"],
+      min: 35,
     },
 
     sex: {
@@ -42,7 +48,7 @@ const profileSchema = new Schema(
     blood: {
       type: Number,
       require: [true, "Define user blood group"],
-      enum: [bloodType, `Allowed values ${bloodType}`], // fix here
+      enum: bloodType,
     },
 
     levelActivity: {
@@ -53,7 +59,6 @@ const profileSchema = new Schema(
     birthday: {
       type: Date,
       require: [true, "Define user birthday"],
-      // add calculation 18 y.o.
     },
   },
   { versionKey: false }
@@ -61,16 +66,28 @@ const profileSchema = new Schema(
 
 profileSchema.post("save", handleMongooseError);
 
-const Profile = model("user", profileSchema);
+const Profile = model("profile", profileSchema);
 
-const register = Joi.object({
-  //   name: Joi.string().required(),
-  //   email: Joi.string().pattern(patterns.email).required(),
-  //   password: Joi.string().min(6).max(24).required(),
+const createProfile = Joi.object({
+  height: Joi.number().min(150).required(),
+  currentWeight: Joi.number().min(35).required(),
+  desiredWeight: Joi.number().min(35).required(),
+  sex: Joi.string()
+    .valid(...sexType)
+    .required(),
+  blood: Joi.number()
+    .valid(...bloodType)
+    .required(),
+  levelActivity: Joi.number()
+    .valid(...levelActivityType)
+    .required(),
+  birthday: Joi.date()
+    .less(Date.now() - minAge)
+    .required(),
 });
 
 const schemas = {
-  register,
+  createProfile,
 };
 
 module.exports = {
