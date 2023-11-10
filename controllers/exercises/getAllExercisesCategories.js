@@ -3,6 +3,12 @@ const { Filter } = require("../../models/filter.js");
 
 const getAllExercisesCategories = async (req, res) => {
   const allFilters = await Filter.find();
+  // const result = allFilters.map((item) => {
+  //   console.log(item.imgUrl);
+  //   return item.imgUrl;
+  // });
+
+  // res.json(result);
   const groupedFilters = allFilters.reduce((result, filter) => {
     const { filter: category, name, imgURL } = filter;
 

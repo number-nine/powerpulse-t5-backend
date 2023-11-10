@@ -3,31 +3,31 @@ const { Schema, model } = require("mongoose");
 const exerciseSchema = new Schema({
   bodyPart: {
     type: String,
-    requiered: true,
+    required: true,
   },
   equipment: {
     type: String,
-    requiered: true,
+    required: true,
   },
   gifUrl: {
     type: String,
-    requiered: true,
+    required: true,
   },
   name: {
     type: String,
-    requiered: true,
+    required: true,
   },
   target: {
     type: String,
-    requiered: true,
+    required: true,
   },
   burnedCalories: {
     type: Number,
-    requiered: true,
+    required: true,
   },
   time: {
     type: Number,
-    requiered: true,
+    required: true,
   },
 });
 

@@ -3,15 +3,15 @@ const { Schema, model } = require("mongoose");
 const filterSchema = new Schema({
   filter: {
     type: String,
-    requiered: true,
+    required: true,
   },
   name: {
     type: String,
-    requiered: true,
+    required: true,
   },
   imgUrl: {
     type: String,
-    requiered: true,
+    required: true,
   },
 });
 
