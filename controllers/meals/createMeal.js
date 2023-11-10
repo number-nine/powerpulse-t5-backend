@@ -6,12 +6,13 @@ const createMeal = async (req, res) => {
   const { weight: basicWeight, calories: basicCalories } = req.product;
   const {weight: actualWeight} = req.body
   
-    const profile = await Meal.create({
+    let profile = await Meal.create({
       owner_id: id,
       ...req.body,
       calories: (basicCalories / basicWeight) * actualWeight,
     });
     
+  profile = await profile.populate("product_id")
 
   res.json(profile);
 };

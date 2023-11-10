@@ -1,16 +1,31 @@
 const { Meal } = require("../../models/meal");
-const { ctrlWrapper } = require("../../helpers");
+const { Product } = require("../../models/product");
+const { ctrlWrapper, HttpError } = require("../../helpers");
 
 const updateMeal = async (req, res) => {
-  const { _id: id } = req.user;
-  const { weight: basicWeight, calories: basicCalories } = req.meal;
-  const { weight: actualWeight } = req.body;
+  const { weight, _id: id } = req.body;
+  const result = await Meal.findById(id);
 
-  const profile = await Meal.create({
-    owner_id: id,
-    ...req.body,
-    calories: (basicCalories / basicWeight) * actualWeight,
-  });
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
+  const { product_id: productId } = result;
+  const refProduct = await Product.findById(productId);
+
+  if (!refProduct) {
+    throw HttpError(404, "Not found");
+  }
+  const { calories: basicCalories, weight: basicWeight } = refProduct;
+  const profile = await Meal.findByIdAndUpdate(
+    id,
+    {
+      weight,
+      calories: (basicCalories / basicWeight) * weight,
+    },
+    {
+      new: true,
+    }
+  ).populate("product_id");
 
   res.json(profile);
 };
