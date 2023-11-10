@@ -5,24 +5,25 @@ const { HttpError } = require("./helpers");
 const path = require("path");
 
 const authRouter = require("./routes/api/auth");
-const userRouter = require('./routes/api/users');
+const userRouter = require("./routes/api/users");
 const productRouter = require("./routes/api/products");
+const trainingRouter = require("./routes/api/training");
 
 const STATIC_PATH = path.join(__dirname, "public");
 
 const app = express();
-
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
-app.use(express.static(STATIC_PATH))
+app.use(express.static(STATIC_PATH));
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/training", trainingRouter);
 
 app.use((req, res) => {
   throw HttpError(404, "Not found");
