@@ -9,6 +9,7 @@ const userRouter = require("./routes/api/users");
 const productRouter = require("./routes/api/products");
 const exercisesRouter = require("./routes/api/exercises");
 const mealRouter = require("./routes/api/meals");
+const workoutRouter = require("./routes/api/workouts");
 
 const STATIC_PATH = path.join(__dirname, "public");
 
@@ -26,6 +27,7 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/exercises", exercisesRouter);
 app.use("/api/meals", mealRouter);
+app.use("/api/workouts", workoutRouter);
 
 app.use((req, res) => {
   throw HttpError(404, "Not found");

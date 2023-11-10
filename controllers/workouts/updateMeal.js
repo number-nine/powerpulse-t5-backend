@@ -20,7 +20,7 @@ const updateMeal = async (req, res) => {
     id,
     {
       weight,
-      calories: ((basicCalories / basicWeight) * weight).toFixed(2),
+      calories: (basicCalories / basicWeight) * weight,
     },
     {
       new: true,

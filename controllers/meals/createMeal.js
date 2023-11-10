@@ -9,7 +9,7 @@ const createMeal = async (req, res) => {
     let profile = await Meal.create({
       owner_id: id,
       ...req.body,
-      calories: (basicCalories / basicWeight) * actualWeight,
+      calories: ((basicCalories / basicWeight) * actualWeight).toFixed(2),
     });
     
   profile = await profile.populate("product_id")
