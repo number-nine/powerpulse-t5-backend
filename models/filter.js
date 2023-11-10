@@ -9,7 +9,7 @@ const filterSchema = new Schema({
     type: String,
     required: true,
   },
-  imgUrl: {
+  imgURL: {
     type: String,
     required: true,
   },
