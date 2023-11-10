@@ -1,8 +1,10 @@
 const getAll = require("./getAll");
-const getAllCategories = require("./getAllCategories");
+const getProductsCategories = require("./getProductsCategories");
+const getProductsByBlood = require("./getProductsByBlood");
 
 
 module.exports = {
   getAll,
-  getAllCategories,
+  getProductsCategories,
+  getProductsByBlood,
 };
