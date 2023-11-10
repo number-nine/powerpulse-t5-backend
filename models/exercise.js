@@ -1,39 +1,38 @@
 const { Schema, model } = require("mongoose");
 
-const trainingSchema = new Schema({
+const exerciseSchema = new Schema({
   bodyPart: {
     type: String,
-    requiered: true,
-    index: true,
+    required: true,
   },
   equipment: {
     type: String,
-    requiered: true,
+    required: true,
   },
   gifUrl: {
     type: String,
-    requiered: true,
+    required: true,
   },
   name: {
     type: String,
-    requiered: true,
+    required: true,
   },
   target: {
     type: String,
-    requiered: true,
+    required: true,
   },
   burnedCalories: {
     type: Number,
-    requiered: true,
+    required: true,
   },
   time: {
     type: Number,
-    requiered: true,
+    required: true,
   },
 });
 
-const Training = model("exercises", trainingSchema);
+const Exercise = model("exercises", exerciseSchema);
 
 module.exports = {
-  Training,
+  Exercise,
 };
