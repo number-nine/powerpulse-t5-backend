@@ -1,7 +1,11 @@
 const getAllExercises = require("./getAllExercises.js");
-const getAllExercisesCategories = require("./getAllExercisesCategories.js");
+const getAllBodyParts = require("./getAllBodyParts.js");
+const getAllEquipment = require("./getAllEquipment.js");
+const getAllMuscles = require("./getAllMuscles.js");
 
 module.exports = {
   getAllExercises,
-  getAllExercisesCategories,
+  getAllBodyParts,
+  getAllEquipment,
+  getAllMuscles,
 };
