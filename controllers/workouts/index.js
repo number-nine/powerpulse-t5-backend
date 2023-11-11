@@ -1,12 +1,11 @@
 const createWorkout= require("./createWorkout");
-// const updateMeal = require("./updateMeal");
-// const deleteMeal = require("./deleteMeal");
+const updateWorkout = require("./updateWorkout");
+const deleteWorkout = require("./deleteWorkout");
 const getWorkoutsByDate = require("./getWorkoutsByDate");
 
 module.exports = {
   createWorkout,
   getWorkoutsByDate,
-  // updateMeal,
-  // deleteMeal,
-  // getMealsByDate,
+  deleteWorkout,
+  updateWorkout,
 };

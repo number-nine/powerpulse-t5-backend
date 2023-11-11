@@ -17,19 +17,19 @@ router.post(
   mealCtrl.createWorkout
 );
 
-// router.patch(
-//   "/",
-//   authenticate,
-//   validateBody(schemas.updateMeal),
-//   mealCtrl.updateMeal
-// );
+router.patch(
+  "/",
+  authenticate,
+  validateBody(schemas.updateWorkout),
+  mealCtrl.updateWorkout
+);
 
-// router.delete(
-//   "/",
-//   authenticate,
-//   validateBody(schemas.deleteMeal),
-//   mealCtrl.deleteMeal
-// );
+router.delete(
+  "/",
+  authenticate,
+  validateBody(schemas.deleteWorkout),
+  mealCtrl.deleteWorkout
+);
 
 router.get(
   "/",
