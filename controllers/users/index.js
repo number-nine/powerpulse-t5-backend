@@ -4,19 +4,10 @@ const current = require("./current");
 const logout = require("./logout");
 const updateAvatar = require("./updateAvatar");
 const verifyEmail = require("./verifyEmail");
-const resendVerification = require('./resendVerification');
+const resendVerification = require("./resendVerification");
 const restorePasswordToken = require("./restorePasswordToken");
 const updatePassword = require("./updatePassword");
-const updateProfile = require("./updateProfile")
-const getProfile = require("./getProfile");
-
-/* Development */
-
-const viewDev = require("./viewDev");
-
-const deleteDev = require("./deleteDev")
-
-/* ------------ */
+const updateUser = require("./updateUser");
 
 module.exports = {
   register,
@@ -28,8 +19,5 @@ module.exports = {
   resendVerification,
   restorePasswordToken,
   updatePassword,
-  viewDev,
-  deleteDev,
-  updateProfile,
-  getProfile,
+  updateUser,
 };

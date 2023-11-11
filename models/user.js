@@ -70,16 +70,18 @@ const updatePassword = Joi.object({
   password: Joi.string().min(6).max(24).required(),
 });
 
-const emailDev = Joi.object({
-  email: Joi.string().pattern(patterns.email).required()
+const updateUser = Joi.object({
+  name: Joi.string(),
+  // email: Joi.string().pattern(patterns.email),
 });
+
 
 const schemas = {
   register,
   login,
   emailRequest,
   updatePassword,
-  emailDev,
+  updateUser,
 };
 
 
