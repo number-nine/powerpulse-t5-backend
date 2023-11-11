@@ -15,6 +15,6 @@ router.put(
   profileCtrl.createProfile
 );
 
-router.get("/bmr", authenticate, profileCtrl.getBmr);
+router.get("/targets", authenticate, profileCtrl.getBmr);
 
 module.exports = router;
