@@ -1,18 +1,16 @@
-// const { User } = require("../../models/user");
 const { Profile } = require("../../models/profile");
 const { ctrlWrapper } = require("../../helpers");
 
-const updateProfile = async (req, res) => {
+const createProfile = async (req, res) => {
   const { _id: id } = req.user;
- 
     let profile = await Profile.create({
       owner: id,
       ...req.body,
     });
-    profile = await profile.populate("owner", "name email");
+    profile = await profile.populate("owner", "name email avatarURL");
   
 
   res.json(profile);
 };
 
-module.exports = ctrlWrapper(updateProfile);
+module.exports = ctrlWrapper(createProfile);
