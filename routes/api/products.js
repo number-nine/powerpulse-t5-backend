@@ -5,9 +5,7 @@ const {  authenticate } = require("../../middlewares");
 const router = express.Router();
 
 
-router.get("/", authenticate, productCtrl.getProductsByBlood);
-// router.get("/", authenticate, productCtrl.getAll);
-router.get("/filtered", authenticate, productCtrl.getFilteredProducts);
+router.get("/", authenticate, productCtrl.getFilteredProducts);
 
 router.get("/categories", authenticate, productCtrl.getProductsCategories);
 
