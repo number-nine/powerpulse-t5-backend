@@ -17,27 +17,25 @@ const getFilteredProducts = async (req, res) => {
 
   const profile = await Profile.findOne({ owner: id });
 
-  if (profile) {
-    if (typeof recommended !== "undefined") {
+    if (profile && typeof recommended !== "undefined") {
       findFilter[`groupBloodNotAllowed.${profile.blood}`] =
         recommended.toLowerCase() === "false";
     }
 
-    if (typeof query !== "undefined") {
-      const normilizedQuery = query.toString().trim()
-      findFilter.title = { $regex: new RegExp(normilizedQuery, "i") };
-    }
-
-    if (typeof categoryId !== "undefined") {
-      findFilter.category = categoryId;
-    }
-
-    result = await Product.find(
-      findFilter,
-      {},
-      paginationParams(page, limit)
-    ).populate("category");
+  if (typeof query !== "undefined") {
+    const normilizedQuery = query.toString().trim();
+    findFilter.title = { $regex: new RegExp(normilizedQuery, "i") };
   }
+
+  if (typeof categoryId !== "undefined") {
+    findFilter.category = categoryId;
+  }
+
+  result = await Product.find(
+    findFilter,
+    {},
+    paginationParams(page, limit)
+  ).populate("category");
 
   res.json(result);
 };
