@@ -1,11 +1,9 @@
-const { ctrlWrapper, HttpError } = require("../../helpers/index.js");
-const { Exercise } = require("../../models/exercise.js");
-const paginationParams = require("../../helpers/paginationParams.js");
+const { ctrlWrapper, HttpError, paginationParams } = require("../../helpers");
+const { Exercise } = require("../../models/exercise");
 
 const getAllExercises = async (req, res) => {
   const { page, limit } = req.query;
-  const { skip, limit: normalizedLimit } = paginationParams(page, limit);
-  const result = await Exercise.find().skip(skip).limit(normalizedLimit);
+  const result = await Exercise.find({},{},paginationParams(page, limit))
   if (!result) {
     throw HttpError(400, "Not found");
   }

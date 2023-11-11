@@ -1,8 +1,13 @@
-const { ctrlWrapper, HttpError } = require("../../helpers/index.js");
+const { ctrlWrapper, HttpError, paginationParams } = require("../../helpers");
 const { Filter } = require("../../models/filter.js");
 
 const getAllBodyParts = async (req, res) => {
-  const result = await Filter.find({ filter: "Body parts" });
+  const { page, limit } = req.query;
+  const result = await Filter.find(
+    { filter: "Body parts" },
+    {},
+    paginationParams(page, limit)
+  );
   if (!result) {
     throw HttpError(404, "Not found");
   }
