@@ -24,7 +24,8 @@ const getFilteredProducts = async (req, res) => {
     }
 
     if (typeof query !== "undefined") {
-      findFilter.title = { $regex: new RegExp(query, "i") };
+      const normilizedQuery = query.toString().trim()
+      findFilter.title = { $regex: new RegExp(normilizedQuery, "i") };
     }
 
     if (typeof categoryId !== "undefined") {
