@@ -34,11 +34,6 @@
                     "Auth"
                 ],
                 "summary": "User registration",
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
                 "requestBody": {
                     "description": "Registration object",
                     "required": true,
@@ -123,7 +118,7 @@
             }
         },
         "/auth/restore": {
-            "get": {
+            "post": {
                 "tags": [
                     "Auth"
                 ],
@@ -214,6 +209,49 @@
                     },
                     "404": {
                         "description": "No such user/password combination"
+                    }
+                }
+            }
+        },
+        "/auth/current": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Current user",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentUserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout user",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content (Operation successful)"
                     }
                 }
             }
@@ -357,12 +395,12 @@
                         "description": "User's authentitication token"
                     },
                     "user": {
-                        "type":"object",
-                        "properties":{
+                        "type": "object",
+                        "properties": {
                             "name": {
                                 "type": "string",
                                 "description": "User's display name",
-                                "example":"Darth Vader"
+                                "example": "Darth Vader"
                             },
                             "email": {
                                 "type": "string",
@@ -371,14 +409,34 @@
                                 "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
                                 "example": "anakin@deathstar.com"
                             },
-                            
                             "aratarURL": {
                                 "type": "string",
                                 "description": "User's avatar",
-                                "format":"uri"
+                                "format": "uri"
                             }
                         }
-                        
+                    }
+                }
+            },
+            "CurrentUserResponse": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "User's display name",
+                        "example": "Darth Vader"
+                    },
+                    "email": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User's email",
+                        "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
+                        "example": "anakin@deathstar.com"
+                    },
+                    "aratarURL": {
+                        "type": "string",
+                        "description": "User's avatar",
+                        "format": "uri"
                     }
                 }
             }
