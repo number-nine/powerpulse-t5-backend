@@ -12,7 +12,7 @@ router.post(
   validateBody(schemas.emailRequest),
   userCtrl.resendVerification
 );
-router.get(
+router.post(
   "/restore",
   validateBody(schemas.emailRequest),
   userCtrl.restorePasswordToken
