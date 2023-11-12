@@ -27,31 +27,37 @@
             "description": "Authorization endpoints"
         }
     ],
-    "paths":{
+    "paths": {
         "/auth/register": {
             "post": {
-                "tags": ["Auth"],
+                "tags": [
+                    "Auth"
+                ],
                 "summary": "User registration",
                 "parameters": [],
-                "security": [{"Bearer":[]}],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
                 "requestBody": {
                     "description": "Registration's object",
                     "required": true,
-                    "content" : {
-                        "application/json" : {
-                            "schema" : {
-                                "$ref": "#"
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReistrationRequest"
                             }
                         }
                     }
                 },
-                "responses":{
+                "responses": {
                     "201": {
-                        "description":"Successful operetion",
+                        "description": "Successful operation",
                         "content": {
-                            "application/json":{
-                                "schema":{
-                                    "&ref":"#"
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegistrationResponse"
                                 }
                             }
                         }
@@ -68,22 +74,64 @@
             }
         }
     },
-
-
     "components": {
         "schemas": {
-            "ReistrationRequest":{
+            "ReistrationRequest": {
                 "type": "object",
-                "required": ["name","email","password"],
+                "required": [
+                    "name",
+                    "email",
+                    "avatarURL"
+                ],
                 "properties": {
                     "name": {
                         "type": "string",
                         "description": "User's display name",
-                        "format":""
+                        "example": "Darth Vader"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
+                        "example": "anakin@deathstar.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "minLength": 6,
+                        "maxLength": 24
                     }
                 }
             },
-            "RegistrationResponse":{}
+            "RegistrationResponse": {
+                "type": "object",
+                
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "User's display name",
+                        "example": "Darth Vader"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
+                        "example": "anakin@deathstar.com"
+                    },
+                    "avatarURL": {
+                        "type": "string",
+                        "description": "User's avatar Url",
+                        "format": "url"
+                    }
+                }
+            }
+        },
+        "securitySchemes":{
+            "Bearer":{
+                "type":"http",
+                "scheme":"bearer",
+                "bearerFormat": "JWT"
+            }
         }
     }
 }
