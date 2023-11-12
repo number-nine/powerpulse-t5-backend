@@ -1,6 +1,8 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
 const { HttpError } = require("./helpers");
 const path = require("path");
 
@@ -28,6 +30,8 @@ app.use("/api/products", productRouter);
 app.use("/api/exercises", exercisesRouter);
 app.use("/api/profiles", profileRouter);
 app.use("/api/dairys", dairyRouter);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use((req, res) => {
   throw HttpError(404, "Not found");
