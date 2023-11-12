@@ -3,7 +3,9 @@ const mealCtrl = require("../../controllers/workouts");
 const {
   authenticate,
   validateBody,
+  validateParams,
   isValidExercise,
+  normalizeDate,
 } = require("../../middlewares");
 const { schemas } = require("../../models/workout");
 
@@ -25,16 +27,17 @@ router.patch(
 );
 
 router.delete(
-  "/",
+  "/:_id",
   authenticate,
-  validateBody(schemas.deleteWorkout),
+  validateParams(schemas.deleteWorkout),
   mealCtrl.deleteWorkout
 );
 
 router.get(
-  "/",
+  "/:date",
   authenticate,
-  validateBody(schemas.getWorkoutsByDate),
+  validateParams(schemas.getWorkoutsByDate),
+  normalizeDate,
   mealCtrl.getWorkoutsByDate
 );
 

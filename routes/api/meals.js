@@ -3,7 +3,9 @@ const mealCtrl = require("../../controllers/meals");
 const {
   authenticate,
   validateBody,
+  validateParams,
   isValidProduct,
+  normalizeDate,
 } = require("../../middlewares");
 const { schemas } = require("../../models/meal");
 
@@ -25,18 +27,18 @@ router.patch(
 );
 
 router.delete(
-  "/",
+  "/:_id",
   authenticate,
-  validateBody(schemas.deleteMeal),
+  validateParams(schemas.deleteMeal),
   mealCtrl.deleteMeal
 );
 
 router.get(
-  "/",
+  "/:date",
   authenticate,
-  validateBody(schemas.getMealsByDate),
+  validateParams(schemas.getMealsByDate),
+  normalizeDate,
   mealCtrl.getMealsByDate
 );
-
 
 module.exports = router;
