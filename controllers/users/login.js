@@ -7,14 +7,14 @@ const signin = async (req, res) => {
   const { email, password: plainPassword } = req.body;
   const user = await User.findOne({ email });
 
-  if (!user) throw HttpError(401, "No such user/password combination");
+  if (!user) throw HttpError(404, "No such user/password combination");
 
   if (!user.verify) throw HttpError(401, "Email not verified");
 
   const isPasswordValid = await bcrypt.compare(plainPassword, user.password);
 
   if (!isPasswordValid)
-    throw HttpError(401, "No such user/password combination");
+    throw HttpError(404, "No such user/password combination");
 
   const payload = {
     id: user._id,
@@ -31,6 +31,7 @@ const signin = async (req, res) => {
     user: {
       name: user.name,
       email: user.email,
+      avatarURL: user.avatarURL
     },
   });
 };

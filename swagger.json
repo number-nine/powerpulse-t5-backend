@@ -34,14 +34,13 @@
                     "Auth"
                 ],
                 "summary": "User registration",
-                "parameters": [],
                 "security": [
                     {
                         "Bearer": []
                     }
                 ],
                 "requestBody": {
-                    "description": "Registration's object",
+                    "description": "Registration object",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -63,12 +62,158 @@
                         }
                     },
                     "400": {
-                        "description": "Bad request (invalid request body)",
-                        "content": {}
+                        "description": "Bad request (invalid request body)"
                     },
                     "409": {
-                        "description": "Email already in use",
-                        "content": {}
+                        "description": "Email already in use"
+                    }
+                }
+            }
+        },
+        "/auth/verify": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Verify user's email",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "verificationToken",
+                        "required": true,
+                        "description": "Verification token"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Verification successful"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Request user's email verification",
+                "requestBody": {
+                    "description": "Verification object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VerificationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Verification email sent"
+                    },
+                    "400": {
+                        "description": "Verification has already been passed"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/auth/restore": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Request user's password restore",
+                "requestBody": {
+                    "description": "Password restore object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PasswordRestoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Restore token sent",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PasswordRestoreResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No such user"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Update user's password",
+                "requestBody": {
+                    "description": "Update password object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password updated"
+                    },
+                    "401": {
+                        "description": "No such token"
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "requestBody": {
+                    "description": "Login object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Email not verified"
+                    },
+                    "404": {
+                        "description": "No such user/password combination"
                     }
                 }
             }
@@ -81,7 +226,7 @@
                 "required": [
                     "name",
                     "email",
-                    "avatarURL"
+                    "password"
                 ],
                 "properties": {
                     "name": {
@@ -105,7 +250,6 @@
             },
             "RegistrationResponse": {
                 "type": "object",
-                
                 "properties": {
                     "name": {
                         "type": "string",
@@ -124,12 +268,125 @@
                         "format": "url"
                     }
                 }
+            },
+            "VerificationRequest": {
+                "type": "object",
+                "required": [
+                    "email"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "description": "User's email",
+                        "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
+                        "example": "anakin@deathstar.com"
+                    }
+                }
+            },
+            "PasswordRestoreRequest": {
+                "type": "object",
+                "required": [
+                    "email"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User's email",
+                        "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
+                        "example": "anakin@deathstar.com"
+                    }
+                }
+            },
+            "PasswordRestoreResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "description": "Restore token"
+                    }
+                }
+            },
+            "UpdatePasswordRequest": {
+                "type": "object",
+                "required": [
+                    "token",
+                    "password"
+                ],
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "description": "Restore token"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "New password",
+                        "minLength": 6,
+                        "maxLength": 24
+                    }
+                }
+            },
+            "LoginRequest": {
+                "type": "object",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User's email",
+                        "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
+                        "example": "anakin@deathstar.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "New password",
+                        "minLength": 6,
+                        "maxLength": 24
+                    }
+                }
+            },
+            "LoginResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "required": true,
+                        "description": "User's authentitication token"
+                    },
+                    "user": {
+                        "type":"object",
+                        "properties":{
+                            "name": {
+                                "type": "string",
+                                "description": "User's display name",
+                                "example":"Darth Vader"
+                            },
+                            "email": {
+                                "type": "string",
+                                "required": true,
+                                "description": "User's email",
+                                "pattern": "/^[\\w-.]+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$/",
+                                "example": "anakin@deathstar.com"
+                            },
+                            
+                            "aratarURL": {
+                                "type": "string",
+                                "description": "User's avatar",
+                                "format":"uri"
+                            }
+                        }
+                        
+                    }
+                }
             }
         },
-        "securitySchemes":{
-            "Bearer":{
-                "type":"http",
-                "scheme":"bearer",
+        "securitySchemes": {
+            "Bearer": {
+                "type": "http",
+                "scheme": "bearer",
                 "bearerFormat": "JWT"
             }
         }
