@@ -25,6 +25,10 @@
         {
             "name": "Auth",
             "description": "Authorization endpoints"
+        },
+        {
+            "name": "Products",
+            "description": "Products (food) endpoints"
         }
     ],
     "paths": {
@@ -255,6 +259,104 @@
                     }
                 }
             }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Products list",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "recommended",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "description": "Filters by user's blood type. If not defined or traning profile doesn't exist - shows all"
+                    },
+                    {
+                        "in": "query",
+                        "name": "categoryId",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Filters by category ID. If not defined - shows all"
+                    },
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Filters by product name (partial or full). If not defined - shows all"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Pagination page. If not defined - pagination disabled."
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Pagination objects per page. If not defined - pagination disabled."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error in request parameters"
+                    }
+                }
+            }
+        },
+        "/products/categories": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Product categories",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProductCategoriesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -437,6 +539,67 @@
                         "type": "string",
                         "description": "User's avatar",
                         "format": "uri"
+                    }
+                }
+            },
+            "ProductsResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "groupBloodNotAllowed": {
+                            "type": "object",
+                            "properties": {
+                                "1": {
+                                    "type": "boolean"
+                                },
+                                "2": {
+                                    "type": "boolean"
+                                },
+                                "3": {
+                                    "type": "boolean"
+                                },
+                                "4": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
+                        "_id": {
+                            "type": "string"
+                        },
+                        "weight": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "calories": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "category": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "title": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "ProductCategoriesResponse":{
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
                     }
                 }
             }
