@@ -12,7 +12,10 @@ const createMeal = async (req, res) => {
       calories: ((basicCalories / basicWeight) * actualWeight).toFixed(2),
     });
     
-  profile = await profile.populate("product_id")
+  profile = await profile.populate({
+    path: "product_id",
+    populate: { path: "category" },
+  });
 
   res.json(profile);
 };

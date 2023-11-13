@@ -25,7 +25,8 @@ const updateMeal = async (req, res) => {
     {
       new: true,
     }
-  ).populate("product_id");
+  ).populate({path: "product_id", populate: {path:"category"}});
+
 
   res.json(profile);
 };
