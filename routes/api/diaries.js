@@ -1,10 +1,10 @@
 const express = require("express");
-const dairyCtrl = require("../../controllers/dairys");
+const diaryCtrl = require("../../controllers/diaries");
 const mealsRouter = require("./meals");
 const workoutRouter = require("./workouts");
 
 const { authenticate, validateParams, normalizeDate } = require("../../middlewares");
-const { schemas } = require("../../schemas/dairy")
+const { schemas } = require("../../schemas/diary")
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.get(
   authenticate,
   validateParams(schemas.getByDate),
   normalizeDate,
-  dairyCtrl.getActionsByDate
+  diaryCtrl.getActionsByDate
 );
 
 module.exports = router;

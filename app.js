@@ -11,7 +11,7 @@ const userRouter = require("./routes/api/users");
 const productRouter = require("./routes/api/products");
 const exercisesRouter = require("./routes/api/exercises");
 const profileRouter = require("./routes/api/profiles");
-const dairyRouter = require("./routes/api/dairys");
+const dairyRouter = require("./routes/api/diaries");
 
 const STATIC_PATH = path.join(__dirname, "public");
 
