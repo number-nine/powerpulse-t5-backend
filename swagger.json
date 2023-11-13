@@ -361,7 +361,7 @@
                 }
             }
         },
-        "/diaries": {
+        "/diaries/{date}": {
             "get": {
                 "tags": [
                     "Diaries"
@@ -401,7 +401,7 @@
                 }
             }
         },
-        "/diaries/meals": {
+        "/diaries/meals/{date}": {
             "get": {
                 "tags": [
                     "Diaries"
@@ -439,7 +439,48 @@
                         "description": "Not found"
                     }
                 }
-            },
+            }
+        },
+        "/diaries/meals/{_id}": {
+            "delete": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Delete user`s meal by id",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Meal's Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MealResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/diaries/meals": {
             "post": {
                 "tags": [
                     "Diaries"
@@ -513,46 +554,9 @@
                         "description": "Not found"
                     }
                 }
-            },
-            "delete": {
-                "tags": [
-                    "Diaries"
-                ],
-                "summary": "Delete user`s meal by id",
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Meal's Id"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Operation successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/MealResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                }
             }
         },
-        "/diaries/workouts": {
+        "/diaries/workouts/{date}": {
             "get": {
                 "tags": [
                     "Diaries"
@@ -590,7 +594,48 @@
                         "description": "Not found"
                     }
                 }
-            },
+            }
+        },
+        "/diaries/workouts/{_id}": {
+            "delete": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Delete user`s workout by id",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Workout's Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkoutResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/diaries/workouts": {
             "post": {
                 "tags": [
                     "Diaries"
@@ -649,43 +694,6 @@
                         }
                     }
                 },
-                "responses": {
-                    "200": {
-                        "description": "Operation successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/WorkoutResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Diaries"
-                ],
-                "summary": "Delete user`s workout by id",
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "_id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "description": "Workout's Id"
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Operation successful",
@@ -1107,7 +1115,7 @@
                         "format": "date"
                     }
                 }
-            }, 
+            },
             "UpdateMealRequest": {
                 "type": "object",
                 "required": [
