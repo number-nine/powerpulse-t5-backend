@@ -400,6 +400,308 @@
                     }
                 }
             }
+        },
+        "/diaries/meals": {
+            "get": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "User`s meals by date",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "date",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "description": "Date of user's meal records"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MealsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Add user's meal by date",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Meal object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddMealRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MealResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Update user's meal by meal Id",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Meal object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateMealRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MealResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Delete user`s meal by id",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Meal's Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MealResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/diaries/workouts": {
+            "get": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "User`s workouts by date",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "date",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "description": "Date of user's workout records"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkoutsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Add user's workout by date",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Workout object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddWorkoutRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkoutResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Update user's workout by workout Id",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Workout object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateWorkoutRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkoutResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "Delete user`s workout by id",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "_id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Workout's Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WorkoutResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -652,7 +954,7 @@
                     "workouts": {
                         "type": "array",
                         "items": {
-                                "$ref": "#/components/schemas/WorkoutResponse"
+                            "$ref": "#/components/schemas/WorkoutResponse"
                         }
                     },
                     "meals": {
@@ -665,25 +967,29 @@
             },
             "WorkoutResponse": {
                 "type": "object",
-                "properties":{
+                "properties": {
                     "_id": {
                         "type": "string"
                     },
                     "owner_id": {
                         "type": "string"
                     },
-                    "time": {"type":"number"},
-                    "burnedCalories":{
+                    "time": {
+                        "type": "number"
+                    },
+                    "burnedCalories": {
                         "type": "number"
                     },
                     "date": {
                         "type": "string",
-                        "format":"date"
+                        "format": "date"
                     },
-                    "exercise_id":{
-                        "type":"object",
-                        "properties":{
-                            "_id": {"type":"string"},
+                    "exercise_id": {
+                        "type": "object",
+                        "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
                             "bodyPart": {
                                 "type": "string"
                             },
@@ -708,7 +1014,12 @@
                             }
                         }
                     }
-
+                }
+            },
+            "WorkoutsResponse": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/WorkoutResponse"
                 }
             },
             "MealResponse": {
@@ -752,8 +1063,8 @@
                             "groupBloodNotAllowed": {
                                 "type": "object",
                                 "properties": {
-                                    "1":{
-                                        "type":"boolean"
+                                    "1": {
+                                        "type": "boolean"
                                     },
                                     "2": {
                                         "type": "boolean"
@@ -767,6 +1078,102 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "MealsResponse": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/MealResponse"
+                }
+            },
+            "AddMealRequest": {
+                "type": "object",
+                "required": [
+                    "product_id",
+                    "weight",
+                    "date"
+                ],
+                "properties": {
+                    "product_id": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "description": "Actual product weight"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            }, 
+            "UpdateMealRequest": {
+                "type": "object",
+                "required": [
+                    "_id",
+                    "weight"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "description": "Meal record Id"
+                    },
+                    "product_id": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "description": "Actual product weight"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "AddWorkoutRequest": {
+                "type": "object",
+                "required": [
+                    "product_id",
+                    "weight",
+                    "date"
+                ],
+                "properties": {
+                    "exercise_id": {
+                        "type": "string"
+                    },
+                    "time": {
+                        "type": "number",
+                        "description": "Actual exercise duration"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "UpdateWorkoutRequest": {
+                "type": "object",
+                "required": [
+                    "_id",
+                    "time"
+                ],
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "description": "Workout record Id"
+                    },
+                    "exercise_id": {
+                        "type": "string"
+                    },
+                    "time": {
+                        "type": "integer",
+                        "description": "Actual exercise duration"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
                     }
                 }
             }
