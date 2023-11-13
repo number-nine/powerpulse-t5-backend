@@ -12,6 +12,7 @@ const productRouter = require("./routes/api/products");
 const exercisesRouter = require("./routes/api/exercises");
 const profileRouter = require("./routes/api/profiles");
 const dairyRouter = require("./routes/api/diaries");
+const statisticsRouter = require("./routes/api/statistics");
 
 const STATIC_PATH = path.join(__dirname, "public");
 
@@ -30,6 +31,7 @@ app.use("/api/products", productRouter);
 app.use("/api/exercises", exercisesRouter);
 app.use("/api/profiles", profileRouter);
 app.use("/api/diaries", dairyRouter);
+app.use("/api/statistics", statisticsRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
