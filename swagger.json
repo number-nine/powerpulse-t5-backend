@@ -29,6 +29,10 @@
         {
             "name": "Products",
             "description": "Products (food) endpoints"
+        },
+        {
+            "name": "Diaries",
+            "description": "User's diary endpoints"
         }
     ],
     "paths": {
@@ -343,7 +347,6 @@
                         "Bearer": []
                     }
                 ],
-                
                 "responses": {
                     "200": {
                         "description": "Operation successful",
@@ -354,6 +357,46 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/diaries": {
+            "get": {
+                "tags": [
+                    "Diaries"
+                ],
+                "summary": "User`s diary by date",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "date",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        },
+                        "description": "Date of user's diary records"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DiariesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
                     }
                 }
             }
@@ -592,7 +635,7 @@
                     }
                 }
             },
-            "ProductCategoriesResponse":{
+            "ProductCategoriesResponse": {
                 "type": "object",
                 "properties": {
                     "_id": {
@@ -600,6 +643,130 @@
                     },
                     "name": {
                         "type": "string"
+                    }
+                }
+            },
+            "DiariesResponse": {
+                "type": "object",
+                "properties": {
+                    "workouts": {
+                        "type": "array",
+                        "items": {
+                                "$ref": "#/components/schemas/WorkoutResponse"
+                        }
+                    },
+                    "meals": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MealResponse"
+                        }
+                    }
+                }
+            },
+            "WorkoutResponse": {
+                "type": "object",
+                "properties":{
+                    "_id": {
+                        "type": "string"
+                    },
+                    "owner_id": {
+                        "type": "string"
+                    },
+                    "time": {"type":"number"},
+                    "burnedCalories":{
+                        "type": "number"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format":"date"
+                    },
+                    "exercise_id":{
+                        "type":"object",
+                        "properties":{
+                            "_id": {"type":"string"},
+                            "bodyPart": {
+                                "type": "string"
+                            },
+                            "equipment": {
+                                "type": "string"
+                            },
+                            "gifUrl": {
+                                "type": "string",
+                                "format": "uri"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "target": {
+                                "type": "string"
+                            },
+                            "burnedCalories": {
+                                "type": "integer"
+                            },
+                            "time": {
+                                "type": "integer"
+                            }
+                        }
+                    }
+
+                }
+            },
+            "MealResponse": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "owner_id": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "integer"
+                    },
+                    "calories": {
+                        "type": "integer"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "product_id": {
+                        "type": "object",
+                        "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Product category Id"
+                            },
+                            "weight": {
+                                "type": "integer"
+                            },
+                            "calories": {
+                                "type": "integer"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "groupBloodNotAllowed": {
+                                "type": "object",
+                                "properties": {
+                                    "1":{
+                                        "type":"boolean"
+                                    },
+                                    "2": {
+                                        "type": "boolean"
+                                    },
+                                    "3": {
+                                        "type": "boolean"
+                                    },
+                                    "4": {
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
