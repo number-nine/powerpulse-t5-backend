@@ -4,6 +4,7 @@ const isValidExercise = require("./isValidExercise");
 const authenticate = require("./authenticate");
 const validateParams = require("./validateParams");
 const normalizeDate = require("./normalizeDate");
+const normalizeDateInBody = require("./normalizeDateInBody")
 const upload = require("./upload");
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
   isValidExercise,
   validateParams,
   normalizeDate,
+  normalizeDateInBody,
   upload,
 };

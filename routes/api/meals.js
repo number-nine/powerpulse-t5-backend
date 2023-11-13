@@ -6,6 +6,7 @@ const {
   validateParams,
   isValidProduct,
   normalizeDate,
+  normalizeDateInBody,
 } = require("../../middlewares");
 const { schemas } = require("../../models/meal");
 
@@ -16,6 +17,7 @@ router.post(
   authenticate,
   validateBody(schemas.createMeal),
   isValidProduct,
+  normalizeDateInBody,
   mealCtrl.createMeal
 );
 

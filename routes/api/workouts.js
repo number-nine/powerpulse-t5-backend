@@ -6,6 +6,7 @@ const {
   validateParams,
   isValidExercise,
   normalizeDate,
+  normalizeDateInBody,
 } = require("../../middlewares");
 const { schemas } = require("../../models/workout");
 
@@ -16,6 +17,7 @@ router.post(
   authenticate,
   validateBody(schemas.createWorkout),
   isValidExercise,
+  normalizeDateInBody,
   mealCtrl.createWorkout
 );
 
