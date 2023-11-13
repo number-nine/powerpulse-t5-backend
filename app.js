@@ -29,7 +29,7 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/exercises", exercisesRouter);
 app.use("/api/profiles", profileRouter);
-app.use("/api/dairys", dairyRouter);
+app.use("/api/diaries", dairyRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
