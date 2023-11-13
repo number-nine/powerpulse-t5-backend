@@ -5,8 +5,6 @@ const exercisesCtrl = require("../../controllers/exercises");
 const router = express.Router();
 
 router.get("/", authenticate, exercisesCtrl.getAllExercises);
-router.get("/muscles", authenticate, exercisesCtrl.getAllMuscles);
-router.get("/bodyparts", authenticate, exercisesCtrl.getAllBodyParts);
-router.get("/equipment", authenticate, exercisesCtrl.getAllEquipment);
+router.get("/:filter", authenticate, exercisesCtrl.getCategoryByFilter);
 
 module.exports = router;
