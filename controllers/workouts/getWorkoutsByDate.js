@@ -4,7 +4,9 @@ const { ctrlWrapper, HttpError } = require("../../helpers");
 const getWorkoutsByDate = async (req, res) => {
   const { _id } = req.user;
   const { date } = req.params;
-  const result = await Workout.find({ owner_id: _id, date });
+  const result = await Workout.find({ owner_id: _id, date }).populate(
+    "exercise_id"
+  );
   if (!result) {
     throw HttpError(404, "Not found");
   }
