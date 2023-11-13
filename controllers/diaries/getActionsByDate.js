@@ -8,7 +8,42 @@ const getActionsByDate = async (req, res) => {
   const workouts = await Workout.find({ owner_id: _id, date }).populate(
     "exercise_id"
   );
-  const meals = await Meal.find({ owner_id: _id, date }).populate("product_id");
+  const meals = await Meal.aggregate([
+    {
+      $match: {
+        date: new Date(date),
+        owner_id: _id,
+      },
+    },
+    {
+      $lookup: {
+        from: "profiles",
+        localField: "owner_id",
+        foreignField: "owner",
+        as: "profile",
+      },
+    },
+    {
+      $lookup: {
+        from: "products",
+        localField: "product_id",
+        foreignField: "_id",
+        as: "product",
+      },
+    },
+    {
+      $unwind: {
+        path: "$profile",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $unwind: {
+        path: "$product",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+  ]);
 
   if (!workouts || !meals) {
     throw HttpError(404, "Not found");
