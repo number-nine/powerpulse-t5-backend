@@ -1,13 +1,14 @@
 const {
   ctrlWrapper,
   HttpError,
-  // paginationParams,
 } = require("../../helpers/index.js");
-const { Filter } = require("../../models/filter.js");
+const { Filter } = require("../../models/filter");
+const  endpoints  = require("./endpoints");
+
 
 const getCategoryByFilter = async (req, res) => {
   const { filter } = req.params;
-
+console.log(endpoints);
   let result;
 
   if (filter === "bodyparts") {
