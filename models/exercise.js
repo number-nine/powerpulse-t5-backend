@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Joi = require("joi");
 
 const exerciseSchema = new Schema({
   bodyPart: {
@@ -33,6 +34,18 @@ const exerciseSchema = new Schema({
 
 const Exercise = model("exercises", exerciseSchema);
 
+const filterExercises = Joi.object({
+  filter: Joi.string(),
+  name: Joi.string(),
+  page: Joi.number().min(1),
+  limit: Joi.date().min(1),
+});
+
+const schemas = {
+  filterExercises,
+};
+
 module.exports = {
+  schemas,
   Exercise,
 };
