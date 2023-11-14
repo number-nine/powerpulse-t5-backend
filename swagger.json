@@ -40,6 +40,10 @@
         {
             "name": "Users",
             "description": "User's basic information"
+        },
+        {
+            "name": "Profiles",
+            "description": "User's sport profile"
         }
     ],
     "paths": {
@@ -795,6 +799,99 @@
                     }
                 }
             }
+        },
+        "/profiles": {
+            "get": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "User's profile",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserSportProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "User's profile",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Profile object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserSportProfileRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserSportProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/profiles/targets": {
+            "get": {
+                "tags": [
+                    "Profiles"
+                ],
+                "summary": "User's traning targets",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserTargetsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1272,6 +1369,7 @@
             },
             "UpdateUserRequest": {
                 "type": "object",
+                "required": ["name"],
                 "properties": {
                     "name": {
                         "type": "string",
@@ -1309,7 +1407,7 @@
                 "properties": {
                     "avatar": {
                         "type": "string",
-                        "format":"binary"
+                        "format": "binary"
                     }
                 }
             },
@@ -1319,6 +1417,138 @@
                     "avatarURL": {
                         "type": "string",
                         "format": "uri"
+                    }
+                }
+            },
+            "UserSportProfileRequest": {
+                "type": "object",
+                "required": [
+                    "height",
+                    "currentWeight",
+                    "desiredWeight",
+                    "sex",
+                    "blood",
+                    "levelActivity",
+                    "birthday"
+                ],
+                "properties": {
+                    "height": {
+                        "type": "integer",
+                        "description": "User's height"
+                    },
+                    "currentWeight": {
+                        "type": "integer",
+                        "description": "User's weight"
+                    },
+                    "desiredWeight": {
+                        "type": "integer",
+                        "description": "User's target weihgt"
+                    },
+                    "sex": {
+                        "type": "string",
+                        "description": "User's gender",
+                        "enum": [
+                            "male",
+                            "female"
+                        ]
+                    },
+                    "blood": {
+                        "type": "integer",
+                        "description": "User's blood type",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4
+                        ]
+                    },
+                    "levelActivity": {
+                        "type": "integer",
+                        "description": "User's blood type",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ]
+                    },
+                    "birthday": {
+                        "type": "string",
+                        "description": "User's birthday",
+                        "format": "date"
+                    }
+                }
+            },
+            "UserSportProfileResponse": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string"
+                    },
+                    "height": {
+                        "type": "integer",
+                        "description": "User's height"
+                    },
+                    "currentWeight": {
+                        "type": "integer",
+                        "description": "User's weight"
+                    },
+                    "desiredWeight": {
+                        "type": "integer",
+                        "description": "User's target weihgt"
+                    },
+                    "sex": {
+                        "type": "string",
+                        "description": "User's gender",
+                        "enum": [
+                            "male",
+                            "female"
+                        ]
+                    },
+                    "blood": {
+                        "type": "integer",
+                        "description": "User's blood type",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4
+                        ]
+                    },
+                    "levelActivity": {
+                        "type": "integer",
+                        "description": "User's blood type",
+                        "enum": [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ]
+                    },
+                    "birthday": {
+                        "type": "string",
+                        "description": "User's birthday",
+                        "format": "date"
+                    },
+                    "owner": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/UpdateUserResponse"
+                    }
+                }
+            },
+            "UserTargetsResponse": {
+                "type": "object",
+
+                "properties": {
+                    "targetBmr": {
+                        "type": "number",
+                        "description": "User's target BMR"
+                    },
+                    "targetTime": {
+                        "type": "number",
+                        "description": "User's target traning time"
                     }
                 }
             }
