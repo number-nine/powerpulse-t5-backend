@@ -6,6 +6,7 @@ const { schemas } = require("../../models/exercise");
 const router = express.Router();
 
 // router.get("/", authenticate, exercisesCtrl.getAllExercises);
+router.get("/categories", authenticate, exercisesCtrl.getEndpoints);
 router.get("/:filter", authenticate, exercisesCtrl.getCategoryByFilter);
 router.get(
   "/",
@@ -13,5 +14,6 @@ router.get(
   validateParams(schemas.filterExercises),
   exercisesCtrl.getFilteredExercises
 );
+
 
 module.exports = router;

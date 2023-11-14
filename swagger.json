@@ -966,6 +966,35 @@
                 }
             }
         },
+        "/exercises/categories": {
+            "get": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Endpoints, categories, filters mapping",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+            
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ExercisesCategoriesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
         "/exercises/{filter}": {
             "get": {
                 "tags": [
@@ -1730,6 +1759,30 @@
                             "type": "integer"
                         }
                     }
+                }
+            },
+            "ExercisesCategoriesResponse": {
+                
+                    "type": "object",
+                    "properties": {
+                        "keys": {
+                            "type": "object",
+                            "description": "Categories filter endpoints",
+                            "properties":{
+                                
+                                    "filter" : {
+                                        "type":"string",
+                                        "description": "Category filter group"
+                                    },
+                                    "field": {
+                                        "type": "string",
+                                        "description": "Types field by category filter"
+                                    }
+
+                                
+                            }
+                        }
+                    
                 }
             },
             "BasicStatisticResponse": {
