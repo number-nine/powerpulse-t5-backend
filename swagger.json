@@ -44,6 +44,14 @@
         {
             "name": "Profiles",
             "description": "User's sport profile"
+        },
+        {
+            "name": "Exercises",
+            "description": "Exercises list"
+        },
+        {
+            "name": "Statistics",
+            "description": "Application statistics"
         }
     ],
     "paths": {
@@ -892,6 +900,100 @@
                     }
                 }
             }
+        },
+        "/exercises": {
+            "get": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Full exersices list",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ExercisesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/exercises/{filter}": {
+            "get": {
+                "tags": [
+                    "Exercises"
+                ],
+                "summary": "Filtered exersices list",
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "filter",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "bodyparts",
+                                "muscles",
+                                "equipment"
+                            ]
+                        },
+                        "description": "Prefilter parameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ExercisesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/statistics": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "summary": "Basic statistic",
+                "responses": {
+                    "200": {
+                        "description": "Operation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BasicStatisticResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1369,7 +1471,9 @@
             },
             "UpdateUserRequest": {
                 "type": "object",
-                "required": ["name"],
+                "required": [
+                    "name"
+                ],
                 "properties": {
                     "name": {
                         "type": "string",
@@ -1481,66 +1585,72 @@
                 }
             },
             "UserSportProfileResponse": {
-                "type": "object",
-                "properties": {
-                    "_id": {
-                        "type": "string"
-                    },
-                    "height": {
-                        "type": "integer",
-                        "description": "User's height"
-                    },
-                    "currentWeight": {
-                        "type": "integer",
-                        "description": "User's weight"
-                    },
-                    "desiredWeight": {
-                        "type": "integer",
-                        "description": "User's target weihgt"
-                    },
-                    "sex": {
-                        "type": "string",
-                        "description": "User's gender",
-                        "enum": [
-                            "male",
-                            "female"
-                        ]
-                    },
-                    "blood": {
-                        "type": "integer",
-                        "description": "User's blood type",
-                        "enum": [
-                            1,
-                            2,
-                            3,
-                            4
-                        ]
-                    },
-                    "levelActivity": {
-                        "type": "integer",
-                        "description": "User's blood type",
-                        "enum": [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5
-                        ]
-                    },
-                    "birthday": {
-                        "type": "string",
-                        "description": "User's birthday",
-                        "format": "date"
-                    },
-                    "owner": {
+                "anyOf": [
+                    {
                         "type": "object",
-                        "$ref": "#/components/schemas/UpdateUserResponse"
+                        "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "height": {
+                                "type": "integer",
+                                "description": "User's height"
+                            },
+                            "currentWeight": {
+                                "type": "integer",
+                                "description": "User's weight"
+                            },
+                            "desiredWeight": {
+                                "type": "integer",
+                                "description": "User's target weihgt"
+                            },
+                            "sex": {
+                                "type": "string",
+                                "description": "User's gender",
+                                "enum": [
+                                    "male",
+                                    "female"
+                                ]
+                            },
+                            "blood": {
+                                "type": "integer",
+                                "description": "User's blood type",
+                                "enum": [
+                                    1,
+                                    2,
+                                    3,
+                                    4
+                                ]
+                            },
+                            "levelActivity": {
+                                "type": "integer",
+                                "description": "User's blood type",
+                                "enum": [
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5
+                                ]
+                            },
+                            "birthday": {
+                                "type": "string",
+                                "description": "User's birthday",
+                                "format": "date"
+                            },
+                            "owner": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/UpdateUserResponse"
+                            }
+                        }
+                    },
+                    {
+                        "type": "null"
                     }
-                }
+                ]
             },
             "UserTargetsResponse": {
                 "type": "object",
-
                 "properties": {
                     "targetBmr": {
                         "type": "number",
@@ -1549,6 +1659,56 @@
                     "targetTime": {
                         "type": "number",
                         "description": "User's target traning time"
+                    }
+                }
+            },
+            "ExercisesResponse": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "_id": {
+                            "type": "string"
+                        },
+                        "bodyPart": {
+                            "type": "string"
+                        },
+                        "equipment": {
+                            "type": "string"
+                        },
+                        "gifUrl": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "target": {
+                            "type": "string"
+                        },
+                        "burnedCalories": {
+                            "type": "integer"
+                        },
+                        "time": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            },
+            "BasicStatisticResponse": {
+                "type": "object",
+                "properties": {
+                    "userCount": {
+                        "type": "integer"
+                    },
+                    "workoutCount": {
+                        "type": "integer"
+                    },
+                    "burnedCaloriesSum": {
+                        "type": "number"
+                    },
+                    "workoutsTimeSum": {
+                        "type": "number"
                     }
                 }
             }

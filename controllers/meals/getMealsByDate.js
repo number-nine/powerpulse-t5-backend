@@ -39,7 +39,20 @@ const getMealsByDate = async (req, res) => {
         preserveNullAndEmptyArrays: true,
       },
     },
-
+    {
+      $lookup: {
+        from: "productsCategories",
+        localField: "product.category",
+        foreignField: "_id",
+        as: "product.category",
+      },
+    },
+    {
+      $unwind: {
+        path: "$product.category",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
   ]);
 
     
