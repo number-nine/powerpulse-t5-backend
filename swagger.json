@@ -975,7 +975,7 @@
         "/statistics": {
             "get": {
                 "tags": [
-                    "Statictics"
+                    "Statistics"
                 ],
                 "summary": "Basic statistic",
                 "responses": {
@@ -1585,62 +1585,69 @@
                 }
             },
             "UserSportProfileResponse": {
-                "type": "object",
-                "properties": {
-                    "_id": {
-                        "type": "string"
-                    },
-                    "height": {
-                        "type": "integer",
-                        "description": "User's height"
-                    },
-                    "currentWeight": {
-                        "type": "integer",
-                        "description": "User's weight"
-                    },
-                    "desiredWeight": {
-                        "type": "integer",
-                        "description": "User's target weihgt"
-                    },
-                    "sex": {
-                        "type": "string",
-                        "description": "User's gender",
-                        "enum": [
-                            "male",
-                            "female"
-                        ]
-                    },
-                    "blood": {
-                        "type": "integer",
-                        "description": "User's blood type",
-                        "enum": [
-                            1,
-                            2,
-                            3,
-                            4
-                        ]
-                    },
-                    "levelActivity": {
-                        "type": "integer",
-                        "description": "User's blood type",
-                        "enum": [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5
-                        ]
-                    },
-                    "birthday": {
-                        "type": "string",
-                        "description": "User's birthday",
-                        "format": "date"
-                    },
-                    "owner": {
+                "anyOf": [
+                    {
                         "type": "object",
-                        "$ref": "#/components/schemas/UpdateUserResponse"
+                        "properties": {
+                            "_id": {
+                                "type": "string"
+                            },
+                            "height": {
+                                "type": "integer",
+                                "description": "User's height"
+                            },
+                            "currentWeight": {
+                                "type": "integer",
+                                "description": "User's weight"
+                            },
+                            "desiredWeight": {
+                                "type": "integer",
+                                "description": "User's target weihgt"
+                            },
+                            "sex": {
+                                "type": "string",
+                                "description": "User's gender",
+                                "enum": [
+                                    "male",
+                                    "female"
+                                ]
+                            },
+                            "blood": {
+                                "type": "integer",
+                                "description": "User's blood type",
+                                "enum": [
+                                    1,
+                                    2,
+                                    3,
+                                    4
+                                ]
+                            },
+                            "levelActivity": {
+                                "type": "integer",
+                                "description": "User's blood type",
+                                "enum": [
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5
+                                ]
+                            },
+                            "birthday": {
+                                "type": "string",
+                                "description": "User's birthday",
+                                "format": "date"
+                            },
+                            "owner": {
+                                "type": "object",
+                                "$ref": "#/components/schemas/UpdateUserResponse"
+                            }
+                        }
+                    },
+                    {
+                        "type": "null"
                     }
-                }
+                ]
             },
             "UserTargetsResponse": {
                 "type": "object",
