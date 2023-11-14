@@ -5,7 +5,7 @@ const endpoints = {
   },
   bodyparts: {
     filter: "Body parts",
-    field: "bodyParts",
+    field: "bodyPart",
   },
   equipment: {
     filter: "Equipment",

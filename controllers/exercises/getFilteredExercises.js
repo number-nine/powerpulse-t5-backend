@@ -1,28 +1,27 @@
+const { ctrlWrapper, paginationParams, HttpError } = require("../../helpers");
 const { Exercise } = require("../../models/exercise");
-const { ctrlWrapper, paginationParams } = require("../../helpers");
+
+const endpoints = require("./endpoints");
 
 const getFilteredExercises = async (req, res) => {
-  // const { _id: id } = req.user;
-  const {
-    filter,
-    category,
-    page,
-    limit,
-  } = req.query;
-
-  let result = [];
+  const { filter, name, page, limit } = req.query;
   const findFilter = {};
 
+  const category = Object.keys(endpoints).find(
+    (endpoint) => endpoints[endpoint].filter === filter
+  );
 
-  if (typeof filter !== "undefined" || typeof category !== "undefined") {
-    findFilter[filter] = category;
-  }
+  if (!category) throw HttpError(404, "Category not found");
 
-  result = await Exercise.find(
+  findFilter[endpoints[category].field] = name;
+
+  const result = await Exercise.find(
     findFilter,
     {},
     paginationParams(page, limit)
-  )
+  );
+
+  if (!result) throw HttpError(404, "Not found");
 
   res.json(result);
 };

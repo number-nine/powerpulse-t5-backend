@@ -906,10 +906,47 @@
                 "tags": [
                     "Exercises"
                 ],
-                "summary": "Full exersices list",
+                "summary": "Filtered exersices list",
                 "security": [
                     {
                         "Bearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Category filter"
+                    },
+                    {
+                        "in": "query",
+                        "name": "name",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Category name"
+                    },
+
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Pagination page. If not defined - pagination disabled."
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "description": "Pagination objects per page. If not defined - pagination disabled."
                     }
                 ],
                 "responses": {
@@ -934,7 +971,7 @@
                 "tags": [
                     "Exercises"
                 ],
-                "summary": "Filtered exersices list",
+                "summary": "Grouped categories",
                 "security": [
                     {
                         "Bearer": []
