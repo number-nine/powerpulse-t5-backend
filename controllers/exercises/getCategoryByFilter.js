@@ -1,29 +1,32 @@
 const {
   ctrlWrapper,
   HttpError,
-  paginationParams,
+  // paginationParams,
 } = require("../../helpers/index.js");
 const { Filter } = require("../../models/filter.js");
 
 const getCategoryByFilter = async (req, res) => {
-  const { page, limit, filter } = req.query;
+  const { filter } = req.params;
 
   let result;
 
   if (filter === "bodyparts") {
     result = await Filter.find(
       { filter: "Body parts" },
-      paginationParams(page, limit)
+      // {},
+      // paginationParams(page, limit)
     );
   } else if (filter === "muscles") {
     result = await Filter.find(
       { filter: "Muscles" },
-      paginationParams(page, limit)
+      // {},
+      // paginationParams(page, limit)
     );
   } else if (filter === "equipment") {
     result = await Filter.find(
       { filter: "Equipment" },
-      paginationParams(page, limit)
+      // {},
+      // paginationParams(page, limit)
     );
   } else {
     throw HttpError(400, "No category with this name");
