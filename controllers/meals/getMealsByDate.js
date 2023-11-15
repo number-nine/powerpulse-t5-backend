@@ -55,7 +55,6 @@ const getMealsByDate = async (req, res) => {
     },
   ]);
 
-    
   if (!result) {
     throw HttpError(404, "Not found");
   }

@@ -12,16 +12,6 @@ router.post(
   validateBody(schemas.emailRequest),
   userCtrl.resendVerification
 );
-router.post(
-  "/restore",
-  validateBody(schemas.emailRequest),
-  userCtrl.restorePasswordToken
-);
-router.patch(
-  "/restore",
-  validateBody(schemas.updatePassword),
-  userCtrl.updatePassword
-);
 
 router.post("/login", validateBody(schemas.login), userCtrl.login);
 router.get("/current", authenticate, userCtrl.current);

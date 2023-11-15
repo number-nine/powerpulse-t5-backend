@@ -6,7 +6,7 @@ const updateProfile = async (req, res, next) => {
   let profile = await Profile.findOne({ owner: id });
   if (!profile) {
     next();
-    return
+    return;
   }
   profile = await Profile.findByIdAndUpdate(
     profile._id,

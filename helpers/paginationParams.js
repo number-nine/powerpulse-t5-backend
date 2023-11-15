@@ -1,7 +1,8 @@
 const HttpError = require("./HttpError.js");
 
 const paginationParams = (page, limit) => {
-  const ERROR_MESSAGE = "The value of pagination parameters must be an integer greater than 0";
+  const ERROR_MESSAGE =
+    "The value of pagination parameters must be an integer greater than 0";
   let normilizedPage = 1;
   let normalizedLimit = 20;
 

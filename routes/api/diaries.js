@@ -3,8 +3,12 @@ const diaryCtrl = require("../../controllers/diaries");
 const mealsRouter = require("./meals");
 const workoutRouter = require("./workouts");
 
-const { authenticate, validateParams, normalizeDate } = require("../../middlewares");
-const { schemas } = require("../../schemas/diary")
+const {
+  authenticate,
+  validateParams,
+  normalizeDate,
+} = require("../../middlewares");
+const { schemas } = require("../../schemas/diary");
 
 const router = express.Router();
 

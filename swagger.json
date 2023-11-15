@@ -144,65 +144,6 @@
                 }
             }
         },
-        "/auth/restore": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Request user's password restore",
-                "requestBody": {
-                    "description": "Password restore object",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/PasswordRestoreRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Restore token sent",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PasswordRestoreResponse"
-                                }
-                            }
-                        }
-                    },
-                    "401": {
-                        "description": "No such user"
-                    }
-                }
-            },
-            "patch": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Update user's password",
-                "requestBody": {
-                    "description": "Update password object",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdatePasswordRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Password updated"
-                    },
-                    "401": {
-                        "description": "No such token"
-                    }
-                }
-            }
-        },
         "/auth/login": {
             "post": {
                 "tags": [
@@ -929,7 +870,6 @@
                         },
                         "description": "Category name"
                     },
-
                     {
                         "in": "query",
                         "name": "page",
@@ -966,7 +906,6 @@
                 }
             }
         },
-       
         "/exercises/groups/{filter}": {
             "get": {
                 "tags": [
@@ -1734,27 +1673,22 @@
                 }
             },
             "ExercisesCategoriesResponse": {
-                
-                    "type": "object",
-                    "properties": {
-                        "keys": {
-                            "type": "object",
-                            "description": "Categories filter endpoints",
-                            "properties":{
-                                
-                                    "filter" : {
-                                        "type":"string",
-                                        "description": "Category filter group"
-                                    },
-                                    "field": {
-                                        "type": "string",
-                                        "description": "Types field by category filter"
-                                    }
-
-                                
+                "type": "object",
+                "properties": {
+                    "keys": {
+                        "type": "object",
+                        "description": "Categories filter endpoints",
+                        "properties": {
+                            "filter": {
+                                "type": "string",
+                                "description": "Category filter group"
+                            },
+                            "field": {
+                                "type": "string",
+                                "description": "Types field by category filter"
                             }
                         }
-                    
+                    }
                 }
             },
             "BasicStatisticResponse": {

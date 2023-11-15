@@ -8,7 +8,6 @@ const bloodType = [1, 2, 3, 4];
 const levelActivityType = [1, 2, 3, 4, 5];
 const minAge = 568025136000; // 18 year to ms
 
-
 const profileSchema = new Schema(
   {
     owner: {
