@@ -17,10 +17,10 @@ const getFilteredProducts = async (req, res) => {
 
   const profile = await Profile.findOne({ owner: id });
 
-    if (profile && typeof recommended !== "undefined") {
-      findFilter[`groupBloodNotAllowed.${profile.blood}`] =
-        recommended.toLowerCase() === "false";
-    }
+  if (profile && typeof recommended !== "undefined") {
+    findFilter[`groupBloodNotAllowed.${profile.blood}`] =
+      recommended.toLowerCase() === "false";
+  }
 
   if (typeof query !== "undefined") {
     const normilizedQuery = query.toString().trim();

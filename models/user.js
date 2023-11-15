@@ -35,12 +35,12 @@ const userSchema = new Schema(
     },
     verificationToken: {
       type: String,
-      required: [true, 'Verification token is required'],
+      required: [true, "Verification token is required"],
     },
     restorePasswordToken: {
       type: String,
       default: null,
-    }
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -60,10 +60,9 @@ const login = Joi.object({
   password: Joi.string().min(6).max(24).required(),
 });
 
-
 const emailRequest = Joi.object({
-  email: Joi.string().pattern(patterns.email).required()
-})
+  email: Joi.string().pattern(patterns.email).required(),
+});
 
 const updatePassword = Joi.object({
   token: Joi.string().required(),
@@ -75,7 +74,6 @@ const updateUser = Joi.object({
   // email: Joi.string().pattern(patterns.email),
 });
 
-
 const schemas = {
   register,
   login,
@@ -83,8 +81,6 @@ const schemas = {
   updatePassword,
   updateUser,
 };
-
-
 
 module.exports = {
   schemas,

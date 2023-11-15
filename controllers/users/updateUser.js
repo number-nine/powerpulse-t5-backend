@@ -7,7 +7,7 @@ const updateUser = async (req, res) => {
     id,
     { ...req.body },
     {
-      fields: {"_id":1, "name":1, "email":1, "avatarURL":1},
+      fields: { _id: 1, name: 1, email: 1, avatarURL: 1 },
       new: true,
     }
   );

@@ -5,8 +5,6 @@ const { schemas } = require("../../models/exercise");
 
 const router = express.Router();
 
-// router.get("/", authenticate, exercisesCtrl.getAllExercises);
-// router.get("/categories", authenticate, exercisesCtrl.getEndpoints);
 router.get("/groups/:filter", authenticate, exercisesCtrl.getCategoryByFilter);
 router.get(
   "/",
@@ -15,37 +13,4 @@ router.get(
   exercisesCtrl.getFilteredExercises
 );
 
-
 module.exports = router;
-
-/** 
- "/exercises/categories": {
-            "get": {
-                "tags": [
-                    "Exercises"
-                ],
-                "summary": "Endpoints, categories, filters mapping",
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-            
-                "responses": {
-                    "200": {
-                        "description": "Operation successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ExercisesCategoriesResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                }
-            }
-        },
-*/

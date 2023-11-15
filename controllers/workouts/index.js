@@ -1,4 +1,4 @@
-const createWorkout= require("./createWorkout");
+const createWorkout = require("./createWorkout");
 const updateWorkout = require("./updateWorkout");
 const deleteWorkout = require("./deleteWorkout");
 const getWorkoutsByDate = require("./getWorkoutsByDate");
