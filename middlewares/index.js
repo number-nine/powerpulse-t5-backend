@@ -3,7 +3,7 @@ const isValidProduct = require("./isValidProduct");
 const isValidExercise = require("./isValidExercise");
 const authenticate = require("./authenticate");
 const validateParams = require("./validateParams");
-const normalizeDate = require("./normalizeDate");
+const normalizeDateInParam = require("./normalizeDateInParam");
 const normalizeDateInBody = require("./normalizeDateInBody");
 const upload = require("./upload");
 
@@ -13,7 +13,7 @@ module.exports = {
   isValidProduct,
   isValidExercise,
   validateParams,
-  normalizeDate,
   normalizeDateInBody,
+  normalizeDateInParam,
   upload,
 };

@@ -5,7 +5,7 @@ const {
   validateBody,
   validateParams,
   isValidProduct,
-  normalizeDate,
+  normalizeDateInParam,
   normalizeDateInBody,
 } = require("../../middlewares");
 const { schemas } = require("../../models/meal");
@@ -39,7 +39,7 @@ router.get(
   "/:date",
   authenticate,
   validateParams(schemas.getMealsByDate),
-  normalizeDate,
+  normalizeDateInParam,
   mealCtrl.getMealsByDate
 );
 
