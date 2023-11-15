@@ -1,32 +1,13 @@
 const { ctrlWrapper } = require("../../helpers");
 const { User } = require("../../models/user.js");
 const { Workout } = require("../../models/workout.js");
+const { Exercise } = require("../../models/exercise.js");
 
 const getStatistics = async (req, res) => {
-  // const userCount = await User.countDocuments();
-
-  // const workoutCount = await Workout.countDocuments();
-
-  // const burnedCalories = await Workout.find({}, "burnedCalories");
-
-  // const burnedCaloriesValues = burnedCalories.map(
-  //   (workout) => workout.burnedCalories
-  // );
-  // const burnedCaloriesSum = burnedCaloriesValues.reduce(
-  //   (accumulator, currentValue) => accumulator + currentValue,
-  //   0
-  // );
-
-  // const workoutsTime = await Workout.find({}, "time");
-  // const workoutsTimeValues = workoutsTime.map((workout) => workout.time);
-  // const workoutsTimeSum = workoutsTimeValues.reduce(
-  //   (accumulator, currentValue) => accumulator + currentValue,
-  //   0
-  // );
   const aggregationPipeline = [
     {
       $group: {
-        _id: null,
+        _id: Date.now(),
         workoutCount: { $sum: 1 },
         burnedCaloriesSum: { $sum: "$burnedCalories" },
         workoutsTimeSum: { $sum: "$time" },
@@ -38,11 +19,14 @@ const getStatistics = async (req, res) => {
 
   if (statistics.length > 0) {
     const userCount = await User.countDocuments();
-    res.json({ ...statistics[0], userCount });
+    const videoCount = await Exercise.countDocuments();
+    res.json({ ...statistics[0], userCount, videoCount });
   } else {
     const userCount = await User.countDocuments();
+    const videoCount = await Exercise.countDocuments();
     res.json({
       userCount,
+      videoCount,
       workoutCount: 0,
       burnedCaloriesSum: 0,
       workoutsTimeSum: 0,
