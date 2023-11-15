@@ -6,7 +6,7 @@ const workoutRouter = require("./workouts");
 const {
   authenticate,
   validateParams,
-  normalizeDate,
+  normalizeDateInParam,
 } = require("../../middlewares");
 const { schemas } = require("../../schemas/diary");
 
@@ -19,7 +19,7 @@ router.get(
   "/:date",
   authenticate,
   validateParams(schemas.getByDate),
-  normalizeDate,
+  normalizeDateInParam,
   diaryCtrl.getActionsByDate
 );
 

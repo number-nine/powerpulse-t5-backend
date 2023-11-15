@@ -5,7 +5,7 @@ const {
   validateBody,
   validateParams,
   isValidExercise,
-  normalizeDate,
+  normalizeDateInParam,
   normalizeDateInBody,
 } = require("../../middlewares");
 const { schemas } = require("../../models/workout");
@@ -39,7 +39,7 @@ router.get(
   "/:date",
   authenticate,
   validateParams(schemas.getWorkoutsByDate),
-  normalizeDate,
+  normalizeDateInParam,
   mealCtrl.getWorkoutsByDate
 );
 

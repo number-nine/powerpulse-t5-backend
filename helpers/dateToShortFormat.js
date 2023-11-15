@@ -1,5 +1,4 @@
-const normalizeDate = async (req, res, next) => {
-  const { date } = req.params;
+const dateToShortFormat = (date) => {
   const incomingDate = new Date(date);
 
   const normalizedDate =
@@ -9,8 +8,7 @@ const normalizeDate = async (req, res, next) => {
     "-" +
     incomingDate.getUTCDate();
 
-  req.params.date = normalizedDate;
-  next();
+  return normalizedDate;
 };
 
-module.exports = normalizeDate;
+module.exports = dateToShortFormat;

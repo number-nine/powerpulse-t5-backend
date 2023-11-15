@@ -5,6 +5,7 @@ const paginationParams = require("./paginationParams");
 const patterns = require("./patterns");
 const normalizeAvatar = require("./normalizeAvatar");
 const sendEmail = require("./sendEmail");
+const dateToShortFormat = require("./dateToShortFormat");
 
 module.exports = {
   HttpError,
@@ -14,4 +15,5 @@ module.exports = {
   patterns,
   normalizeAvatar,
   sendEmail,
+  dateToShortFormat,
 };
