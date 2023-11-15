@@ -10,10 +10,11 @@ const getFilteredExercises = async (req, res) => {
   const category = Object.keys(endpoints).find(
     (endpoint) => endpoints[endpoint].filter === filter
   );
+console.log(category);
+  if (category) {  findFilter[endpoints[category].field] = name;
+}
+    // throw HttpError(404, "Category not found");
 
-  if (!category) throw HttpError(404, "Category not found");
-
-  findFilter[endpoints[category].field] = name;
 
   const result = await Exercise.find(
     findFilter,

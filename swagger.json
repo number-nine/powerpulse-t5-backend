@@ -966,36 +966,8 @@
                 }
             }
         },
-        "/exercises/categories": {
-            "get": {
-                "tags": [
-                    "Exercises"
-                ],
-                "summary": "Endpoints, categories, filters mapping",
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
-            
-                "responses": {
-                    "200": {
-                        "description": "Operation successful",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ExercisesCategoriesResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                }
-            }
-        },
-        "/exercises/{filter}": {
+       
+        "/exercises/groups/{filter}": {
             "get": {
                 "tags": [
                     "Exercises"
