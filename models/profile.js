@@ -65,9 +65,9 @@ profileSchema.post("save", handleMongooseError);
 const Profile = model("profile", profileSchema);
 
 const createProfile = Joi.object({
-  height: Joi.number().min(150).required(),
-  currentWeight: Joi.number().min(35).required(),
-  desiredWeight: Joi.number().min(35).required(),
+  height: Joi.number().min(150).max(250).required(),
+  currentWeight: Joi.number().min(35).max(250).required(),
+  desiredWeight: Joi.number().min(35).max(200).required(),
   sex: Joi.string()
     .valid(...sexType)
     .required(),
