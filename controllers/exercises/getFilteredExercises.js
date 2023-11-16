@@ -10,7 +10,6 @@ const getFilteredExercises = async (req, res) => {
   const category = Object.keys(endpoints).find(
     (endpoint) => endpoints[endpoint].filter === filter
   );
-  console.log(category);
   if (category) {
     findFilter[endpoints[category].field] = name;
   }
