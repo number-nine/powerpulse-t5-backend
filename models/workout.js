@@ -51,9 +51,7 @@ const createWorkout = Joi.object({
 
 const updateWorkout = Joi.object({
   _id: Joi.objectId().required(),
-  exercise_id: Joi.objectId(),
   time: Joi.number().greater(0).required(),
-  date: Joi.date(),
 });
 
 const deleteWorkout = Joi.object({

@@ -47,9 +47,7 @@ const createMeal = Joi.object({
 
 const updateMeal = Joi.object({
   _id: Joi.objectId().required(),
-  product_id: Joi.objectId(),
   weight: Joi.number().min(1).required(),
-  date: Joi.date(),
 });
 
 const deleteMeal = Joi.object({
