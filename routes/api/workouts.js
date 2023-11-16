@@ -32,6 +32,7 @@ router.delete(
   "/:_id",
   authenticate,
   validateParams(schemas.deleteWorkout),
+  normalizeDateInParam,
   mealCtrl.deleteWorkout
 );
 

@@ -1,9 +1,8 @@
-const {dateToShortFormat} = require("../helpers")
+const { dateToShortFormat } = require("../helpers");
 
 const normalizeDateInParam = async (req, res, next) => {
-  const { date } = req.param;
-
-  req.param.date = dateToShortFormat(date);
+  const { date } = req.params;
+  req.params.date = dateToShortFormat(date);
   next();
 };
 
