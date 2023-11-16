@@ -1154,51 +1154,60 @@
                 }
             },
             "ProductsResponse": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "groupBloodNotAllowed": {
+                "type": "object",
+                "properties": {
+                    "total": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "array",
+                        "description": "Total count of elements in filtered collection",
+                        "items": {
                             "type": "object",
                             "properties": {
-                                "1": {
-                                    "type": "boolean"
+                                "groupBloodNotAllowed": {
+                                    "type": "object",
+                                    "properties": {
+                                        "1": {
+                                            "type": "boolean"
+                                        },
+                                        "2": {
+                                            "type": "boolean"
+                                        },
+                                        "3": {
+                                            "type": "boolean"
+                                        },
+                                        "4": {
+                                            "type": "boolean"
+                                        }
+                                    }
                                 },
-                                "2": {
-                                    "type": "boolean"
-                                },
-                                "3": {
-                                    "type": "boolean"
-                                },
-                                "4": {
-                                    "type": "boolean"
-                                }
-                            }
-                        },
-                        "_id": {
-                            "type": "string"
-                        },
-                        "weight": {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        "calories": {
-                            "type": "integer",
-                            "minimum": 1
-                        },
-                        "category": {
-                            "type": "object",
-                            "properties": {
                                 "_id": {
                                     "type": "string"
                                 },
-                                "name": {
+                                "weight": {
+                                    "type": "integer",
+                                    "minimum": 1
+                                },
+                                "calories": {
+                                    "type": "integer",
+                                    "minimum": 1
+                                },
+                                "category": {
+                                    "type": "object",
+                                    "properties": {
+                                        "_id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "title": {
                                     "type": "string"
                                 }
                             }
-                        },
-                        "title": {
-                            "type": "string"
                         }
                     }
                 }
@@ -1637,34 +1646,43 @@
                 }
             },
             "ExercisesResponse": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "_id": {
-                            "type": "string"
-                        },
-                        "bodyPart": {
-                            "type": "string"
-                        },
-                        "equipment": {
-                            "type": "string"
-                        },
-                        "gifUrl": {
-                            "type": "string",
-                            "format": "uri"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "target": {
-                            "type": "string"
-                        },
-                        "burnedCalories": {
-                            "type": "integer"
-                        },
-                        "time": {
-                            "type": "integer"
+                "type": "object",
+                "description": "Total count of elements in filtered collection",
+                "properties": {
+                    "total": {
+                        "type": "integer"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "_id": {
+                                    "type": "string"
+                                },
+                                "bodyPart": {
+                                    "type": "string"
+                                },
+                                "equipment": {
+                                    "type": "string"
+                                },
+                                "gifUrl": {
+                                    "type": "string",
+                                    "format": "uri"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "target": {
+                                    "type": "string"
+                                },
+                                "burnedCalories": {
+                                    "type": "integer"
+                                },
+                                "time": {
+                                    "type": "integer"
+                                }
+                            }
                         }
                     }
                 }
