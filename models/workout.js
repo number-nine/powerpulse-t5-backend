@@ -45,13 +45,13 @@ const Workout = model("workout", workoutSchema);
 
 const createWorkout = Joi.object({
   exercise_id: Joi.objectId().required(),
-  time: Joi.number().greater(0).required(),
+  time: Joi.number().greater(0).max(120).required(),
   date: Joi.date().required(),
 });
 
 const updateWorkout = Joi.object({
   _id: Joi.objectId().required(),
-  time: Joi.number().greater(0).required(),
+  time: Joi.number().greater(0).max(120).required(),
 });
 
 const deleteWorkout = Joi.object({

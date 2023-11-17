@@ -41,13 +41,13 @@ const Meal = model("meal", mealSchema);
 
 const createMeal = Joi.object({
   product_id: Joi.objectId().required(),
-  weight: Joi.number().min(1).required(),
+  weight: Joi.number().greater(0).max(700).required(),
   date: Joi.date().required(),
 });
 
 const updateMeal = Joi.object({
   _id: Joi.objectId().required(),
-  weight: Joi.number().min(1).required(),
+  weight: Joi.number().greater(0).max(700).required(),
 });
 
 const deleteMeal = Joi.object({
