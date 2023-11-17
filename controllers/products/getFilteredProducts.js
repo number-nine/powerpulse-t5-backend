@@ -13,6 +13,7 @@ const getFilteredProducts = async (req, res) => {
   } = req.query;
 
   let result = [];
+  let total = 0;
   const findFilter = {};
 
   const profile = await Profile.findOne({ owner: id });
@@ -37,7 +38,9 @@ const getFilteredProducts = async (req, res) => {
     paginationParams(page, limit)
   ).populate("category");
 
-  res.json(result);
+  total = await Product.countDocuments(findFilter);
+
+  res.json({ data: result, total });
 };
 
 module.exports = ctrlWrapper(getFilteredProducts);
