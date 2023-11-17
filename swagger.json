@@ -1366,7 +1366,10 @@
                     },
                     "weight": {
                         "type": "integer",
-                        "description": "Actual product weight"
+                        "description": "Actual product weight",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "maximum": 700
                     },
                     "date": {
                         "type": "string",
@@ -1390,7 +1393,10 @@
                     },
                     "weight": {
                         "type": "integer",
-                        "description": "Actual product weight"
+                        "description": "Actual product weight",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "maximum": 700
                     },
                     "date": {
                         "type": "string",
@@ -1411,7 +1417,10 @@
                     },
                     "time": {
                         "type": "number",
-                        "description": "Actual exercise duration"
+                        "description": "Actual exercise duration",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "maximum": 120
                     },
                     "date": {
                         "type": "string",
@@ -1435,7 +1444,10 @@
                     },
                     "time": {
                         "type": "integer",
-                        "description": "Actual exercise duration"
+                        "description": "Actual exercise duration",
+                        "minimum": 0,
+                        "exclusiveMinimum": true,
+                        "maximum": 120
                     },
                     "date": {
                         "type": "string",
@@ -1512,15 +1524,21 @@
                 "properties": {
                     "height": {
                         "type": "integer",
-                        "description": "User's height"
+                        "description": "User's height",
+                        "minimum": 150,
+                        "maximum": 250
                     },
                     "currentWeight": {
                         "type": "integer",
-                        "description": "User's weight"
+                        "description": "User's weight",
+                        "minimum": 35,
+                        "maximum": 250
                     },
                     "desiredWeight": {
                         "type": "integer",
-                        "description": "User's target weihgt"
+                        "description": "User's target weihgt",
+                        "minimum": 35,
+                        "maximum": 200
                     },
                     "sex": {
                         "type": "string",
