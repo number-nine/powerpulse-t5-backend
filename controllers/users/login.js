@@ -32,6 +32,7 @@ const signin = async (req, res) => {
       name: user.name,
       email: user.email,
       avatarURL: user.avatarURL,
+      createdAt: user.createdAt,
     },
   });
 };

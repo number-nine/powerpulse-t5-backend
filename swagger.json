@@ -243,7 +243,7 @@
                     },
                     {
                         "in": "query",
-                        "name": "categoryId",
+                        "name": "category_id",
                         "schema": {
                             "type": "string"
                         },
@@ -1126,6 +1126,11 @@
                                 "type": "string",
                                 "description": "User's avatar",
                                 "format": "uri"
+                            },
+                            "createdAt": {
+                                "type":"string",
+                                "description": "Date of creation",
+                                "format": "date"
                             }
                         }
                     }
@@ -1150,6 +1155,11 @@
                         "type": "string",
                         "description": "User's avatar",
                         "format": "uri"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Date of creation",
+                        "format": "date"
                     }
                 }
             },
