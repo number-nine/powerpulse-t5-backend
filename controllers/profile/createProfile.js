@@ -1,8 +1,9 @@
 const { Profile } = require("../../models/profile");
-const { ctrlWrapper } = require("../../helpers");
+const { ctrlWrapper, dateToShortFormat } = require("../../helpers");
 
 const createProfile = async (req, res) => {
   const { _id: id } = req.user;
+  req.body.birthday = dateToShortFormat(req.body.birthday);
   let profile = await Profile.create({
     owner: id,
     ...req.body,
