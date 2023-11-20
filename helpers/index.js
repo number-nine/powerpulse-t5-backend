@@ -6,6 +6,7 @@ const patterns = require("./patterns");
 const normalizeAvatar = require("./normalizeAvatar");
 const sendEmail = require("./sendEmail");
 const dateToShortFormat = require("./dateToShortFormat");
+// const cloudinary = require("./cloudinary");
 
 module.exports = {
   HttpError,
@@ -16,4 +17,5 @@ module.exports = {
   normalizeAvatar,
   sendEmail,
   dateToShortFormat,
+  // cloudinary,
 };
