@@ -5,7 +5,7 @@ const sendEmail = async ({ email, token }) => {
   const EMAIL_FROM = "sender@snowboards.com.ua";
   const client = new postmark.ServerClient(EMAIL_API);
   const frontendVerifyBaseRoute =
-    "https://vasylievyurii.github.io/PowerPulse2.0/signup/";
+    "https://vasylievyurii.github.io/PowerPulse2.0/signin/";
   const msg = {
     From: EMAIL_FROM,
     To: email,
