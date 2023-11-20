@@ -9,7 +9,7 @@ router.patch(
   "/avatars",
   authenticate,
   upload.single("avatar"),
-  userCtrl.updateAvatar
+  userCtrl.updateAvatarCloudinary
 );
 
 router.patch(
