@@ -5,7 +5,7 @@ const sendEmail = async ({ email, token }) => {
   const EMAIL_FROM = "sender@snowboards.com.ua";
   const client = new postmark.ServerClient(EMAIL_API);
   const frontendVerifyBaseRoute =
-    "https://vasylievyurii.github.io/PowerPulse2.0/signup";
+    "https://vasylievyurii.github.io/PowerPulse2.0/signup/";
   const msg = {
     From: EMAIL_FROM,
     To: email,
@@ -69,7 +69,7 @@ const sendEmail = async ({ email, token }) => {
     <main>
       <div class="container">
         <h2 class='emailTitle'>Thank you for registration!</h2>
-        <p>Please follow the link below to confirm your email address: <a target="_blank" href=${frontendVerifyBaseRoute+token}">Click here</a></p>
+        <p>Please follow the link below to confirm your email address: <a target="_blank" href=${frontendVerifyBaseRoute+token}>Click here</a></p>
         <P class='regards'>Best Regards, Power Pulse team!</P>
       </div>
     </main>
