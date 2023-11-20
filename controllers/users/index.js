@@ -2,7 +2,7 @@ const register = require("./register");
 const login = require("./login");
 const current = require("./current");
 const logout = require("./logout");
-const updateAvatar = require("./updateAvatar");
+const updateAvatarCloudinary = require("./updateAvatarCloudinary");
 const verifyEmail = require("./verifyEmail");
 const resendVerification = require("./resendVerification");
 const updateUser = require("./updateUser");
@@ -12,7 +12,7 @@ module.exports = {
   login,
   current,
   logout,
-  updateAvatar,
+  updateAvatarCloudinary,
   verifyEmail,
   resendVerification,
   updateUser,
