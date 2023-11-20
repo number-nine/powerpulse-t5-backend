@@ -1,16 +1,24 @@
-const cloudinary = require("../../helpers/cloudinary");
 const fs = require("fs/promises");
 
+const { ctrlWrapper } = require("../../helpers");
+const cloudinary = require("../../helpers/cloudinary");
+const { User } = require("../../models/user");
+
 const updateAvatarCloudinary = async (req, res) => {
-  try {
-    const fileData = await cloudinary.uploader.upload(req.file.path, {
+  const { _id } = req.user;
+  const { secure_url: avatarURL } = await cloudinary.uploader.upload(
+    req.file.path,
+    {
       folder: "avatars",
-    });
-    console.log("fD", fileData);
-    await fs.unlink(req.file.path);
-  } catch (error) {
-    console.log(error.message);
-  }
+    }
+  );
+
+  await fs.unlink(req.file.path);
+
+  await User.findByIdAndUpdate(_id, { avatarURL });
+  res.json({
+    avatarURL,
+  });
 };
 
-module.exports = updateAvatarCloudinary;
+module.exports = ctrlWrapper(updateAvatarCloudinary);
