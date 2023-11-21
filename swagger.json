@@ -262,7 +262,8 @@
                         "name": "page",
                         "schema": {
                             "type": "integer",
-                            "minimum": 1
+                            "minimum": 1,
+                            "default": 1
                         },
                         "description": "Pagination page. If not defined - pagination disabled."
                     },
@@ -271,7 +272,8 @@
                         "name": "limit",
                         "schema": {
                             "type": "integer",
-                            "minimum": 1
+                            "minimum": 1,
+                            "default":20
                         },
                         "description": "Pagination objects per page. If not defined - pagination disabled."
                     }
@@ -872,7 +874,8 @@
                         "name": "page",
                         "schema": {
                             "type": "integer",
-                            "minimum": 1
+                            "minimum": 1,
+                            "default":1
                         },
                         "description": "Pagination page. If not defined - pagination disabled."
                     },
@@ -881,7 +884,8 @@
                         "name": "limit",
                         "schema": {
                             "type": "integer",
-                            "minimum": 1
+                            "minimum": 1,
+                            "default":20
                         },
                         "description": "Pagination objects per page. If not defined - pagination disabled."
                     }
