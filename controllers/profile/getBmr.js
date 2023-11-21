@@ -7,7 +7,7 @@ const getBmr = async (req, res) => {
   if (!result) {
     throw HttpError(404, "Not found");
   }
-  const targetBmr = result.brm
+  const targetBmr = result.bmr
   const targetTime = 110;
 
   res.json({ targetBmr, targetTime });

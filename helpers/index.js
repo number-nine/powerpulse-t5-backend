@@ -6,7 +6,7 @@ const patterns = require("./patterns");
 const normalizeAvatar = require("./normalizeAvatar");
 const sendEmail = require("./sendEmail");
 const dateToShortFormat = require("./dateToShortFormat");
-const calculateBrm =  require("./calculateBrm")
+const calculateBmr =  require("./calculateBmr")
 // const cloudinary = require("./cloudinary");
 
 module.exports = {
@@ -18,6 +18,6 @@ module.exports = {
   normalizeAvatar,
   sendEmail,
   dateToShortFormat,
-  calculateBrm,
+  calculateBmr,
   // cloudinary,
 };

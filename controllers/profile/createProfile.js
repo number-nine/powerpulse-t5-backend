@@ -6,6 +6,7 @@ const {
 
 const createProfile = async (req, res) => {
   const { _id: id } = req.user;
+  console.log(req.body);
   const { height, currentWeight, sex, levelActivity, birthday } = req.body;
   let profile = await Profile.create({
     owner: id,
