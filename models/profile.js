@@ -56,6 +56,10 @@ const profileSchema = new Schema(
       type: Date,
       required: [true, "Define user birthday"],
     },
+    bmr: {
+      type: Number,
+      default:0,
+    },
   },
   { versionKey: false }
 );
