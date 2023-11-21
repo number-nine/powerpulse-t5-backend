@@ -19,7 +19,6 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Set password for user"],
       min: 6,
-      max: 24,
     },
     token: {
       type: String,
