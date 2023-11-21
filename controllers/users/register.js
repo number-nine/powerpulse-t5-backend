@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const gravatar = require("gravatar");
+// const gravatar = require("gravatar");
 const { nanoid } = require("nanoid");
 
 const { User } = require("../../models/user");
@@ -11,7 +11,9 @@ const signup = async (req, res) => {
 
   if (user) throw HttpError(409, "Email already in use");
 
-  const avatarURL = gravatar.url(email, { s: "250" });
+  const avatarURL = "";
+    // const avatarURL = gravatar.url(email, { s: "250" });
+
   const password = await bcrypt.hash(plainPassword, 10);
 
   const newUser = await User.create({
