@@ -46,7 +46,10 @@ const Workout = model("workout", workoutSchema);
 const createWorkout = Joi.object({
   exercise_id: Joi.objectId().required(),
   time: Joi.number().greater(0).max(120).required(),
-  date: Joi.date().required(),
+  date: Joi.date().required().messages({
+    'date.base': 'Date must have any valid ISO date format, for example YYYY-MM-DD.',
+    'any.required': 'Date field is required.',
+  }),
 });
 
 const updateWorkout = Joi.object({
@@ -59,7 +62,11 @@ const deleteWorkout = Joi.object({
 });
 
 const getWorkoutsByDate = Joi.object({
-  date: Joi.date().required(),
+  date: Joi.date().required().messages({
+    "date.base":
+      "Date must have any valid ISO date format, for example YYYY-MM-DD.",
+    "any.required": "Date field is required.",
+  }),
 });
 
 const schemas = {

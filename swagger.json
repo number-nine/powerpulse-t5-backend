@@ -1407,19 +1407,12 @@
                         "type": "string",
                         "description": "Meal record Id"
                     },
-                    "product_id": {
-                        "type": "string"
-                    },
                     "weight": {
                         "type": "integer",
                         "description": "Actual product weight",
                         "minimum": 0,
                         "exclusiveMinimum": true,
                         "maximum": 700
-                    },
-                    "date": {
-                        "type": "string",
-                        "format": "date"
                     }
                 }
             },
@@ -1458,19 +1451,12 @@
                         "type": "string",
                         "description": "Workout record Id"
                     },
-                    "exercise_id": {
-                        "type": "string"
-                    },
                     "time": {
                         "type": "integer",
                         "description": "Actual exercise duration",
                         "minimum": 0,
                         "exclusiveMinimum": true,
                         "maximum": 120
-                    },
-                    "date": {
-                        "type": "string",
-                        "format": "date"
                     }
                 }
             },

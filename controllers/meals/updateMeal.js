@@ -4,7 +4,8 @@ const { ctrlWrapper, HttpError } = require("../../helpers");
 
 const updateMeal = async (req, res) => {
   const { weight, _id: id } = req.body;
-  const result = await Meal.findById(id);
+  const { _id: userId } = req.user;
+  const result = await Meal.findOne({_id: id, owner_id: userId});
 
   if (!result) {
     throw HttpError(404, "Not found");

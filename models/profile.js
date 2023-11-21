@@ -79,7 +79,13 @@ const createProfile = Joi.object({
     .required(),
   birthday: Joi.date()
     .less(Date.now() - minAge)
-    .required(),
+    .required()
+    .messages({
+      "date.base":
+        "Date must have any valid ISO date format, for example YYYY-MM-DD.",
+      "date.less": "User must be over 18 y.o.",
+      "any.required": "Date field is required.",
+    }),
 });
 
 const schemas = {

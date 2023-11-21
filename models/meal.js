@@ -42,7 +42,11 @@ const Meal = model("meal", mealSchema);
 const createMeal = Joi.object({
   product_id: Joi.objectId().required(),
   weight: Joi.number().greater(0).max(700).required(),
-  date: Joi.date().required(),
+  date: Joi.date().required().messages({
+    "date.base":
+      "Date must have any valid ISO date format, for example YYYY-MM-DD.",
+    "any.required": "Date field is required.",
+  }),
 });
 
 const updateMeal = Joi.object({
@@ -55,7 +59,11 @@ const deleteMeal = Joi.object({
 });
 
 const getMealsByDate = Joi.object({
-  date: Joi.date().required(),
+  date: Joi.date().required().messages({
+    "date.base":
+      "Date must have any valid ISO date format, for example YYYY-MM-DD.",
+    "any.required": "Date field is required.",
+  }),
 });
 
 const schemas = {

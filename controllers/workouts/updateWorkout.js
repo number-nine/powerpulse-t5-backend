@@ -4,7 +4,8 @@ const { ctrlWrapper, HttpError } = require("../../helpers");
 
 const updateWorkout = async (req, res) => {
   const { time, _id: id } = req.body;
-  const result = await Workout.findById(id);
+  const { _id: userId } = req.user;
+  const result = await Workout.findOne({ _id: id, owner_id: userId });
 
   if (!result) {
     throw HttpError(404, "Not found");

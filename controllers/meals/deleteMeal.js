@@ -2,8 +2,9 @@ const { Meal } = require("../../models/meal");
 const { ctrlWrapper, HttpError } = require("../../helpers");
 
 const deleteMeal = async (req, res) => {
-  const { _id: id } = req.params;
-  const result = await Meal.findByIdAndDelete(id);
+  const { _id } = req.params;
+  const { _id: userId } = req.user;
+  const result = await Meal.findOneAndDelete({ _id, owner_id: userId });
   if (!result) {
     throw HttpError(404, "Not found");
   }

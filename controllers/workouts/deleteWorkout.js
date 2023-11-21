@@ -2,8 +2,9 @@ const { Workout } = require("../../models/workout");
 const { ctrlWrapper, HttpError } = require("../../helpers");
 
 const deleteWorkout = async (req, res) => {
-  const { _id: id } = req.params;
-  const result = await Workout.findByIdAndDelete(id);
+  const { _id } = req.params;
+  const { _id: userId } = req.user;
+  const result = await Workout.findOneAndDelete({ _id, owner_id: userId });
   if (!result) {
     throw HttpError(404, "Not found");
   }
