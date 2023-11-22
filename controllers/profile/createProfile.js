@@ -1,8 +1,5 @@
 const { Profile } = require("../../models/profile");
-const {
-  ctrlWrapper,
-  calculateBrm,
-} = require("../../helpers");
+const { ctrlWrapper, calculateBmr } = require("../../helpers");
 
 const createProfile = async (req, res) => {
   const { _id: id } = req.user;
@@ -10,7 +7,7 @@ const createProfile = async (req, res) => {
   const { height, currentWeight, sex, levelActivity, birthday } = req.body;
   let profile = await Profile.create({
     owner: id,
-    brm: calculateBrm(height, currentWeight, sex, levelActivity, birthday),
+    brm: calculateBmr(height, currentWeight, sex, levelActivity, birthday),
     ...req.body,
   });
   profile = await profile.populate("owner", "name email avatarURL");
