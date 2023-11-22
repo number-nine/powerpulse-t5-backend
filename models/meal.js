@@ -45,7 +45,7 @@ const createMeal = Joi.object({
   date: Joi.date().required().messages({
     "date.base":
       "Date must have any valid ISO date format, for example YYYY-MM-DD.",
-    "any.required": "Date field is required.",
+    "any.required": "date field is required.",
   }),
 });
 
@@ -62,7 +62,7 @@ const getMealsByDate = Joi.object({
   date: Joi.date().required().messages({
     "date.base":
       "Date must have any valid ISO date format, for example YYYY-MM-DD.",
-    "any.required": "Date field is required.",
+    "any.required": "date field is required.",
   }),
 });
 

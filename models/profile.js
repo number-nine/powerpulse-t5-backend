@@ -88,7 +88,7 @@ const createProfile = Joi.object({
       "date.base":
         "Date must have any valid ISO date format, for example YYYY-MM-DD.",
       "date.less": "User must be over 18 y.o.",
-      "any.required": "Date field is required.",
+      "any.required": "birthday field is required.",
     }),
 });
 
