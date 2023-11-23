@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
-const { nanoid } = require("nanoid");
+// const { nanoid } = require("nanoid");
 
 const { User } = require("../../models/user");
 const { HttpError, ctrlWrapper, sendEmail } = require("../../helpers");
@@ -12,7 +12,7 @@ const signup = async (req, res) => {
   if (user) throw HttpError(409, "Email already in use");
 
   // const avatarURL = "";
-    const avatarURL = gravatar.url(email, { s: "250" });
+  const avatarURL = gravatar.url(email, { s: "250" });
 
   const password = await bcrypt.hash(plainPassword, 10);
 
@@ -20,14 +20,17 @@ const signup = async (req, res) => {
     ...req.body,
     password,
     avatarURL,
-    verify: false,
-    verificationToken: nanoid(),
+    verify: true,
+    verificationToken: null,
+    // Email verification disabled for development purposes
+    // verify: false,
+    // verificationToken: nanoid(),
   });
 
-  await sendEmail({
-    email: newUser.email,
-    token: newUser.verificationToken,
-  });
+  // await sendEmail({
+  //   email: newUser.email,
+  //   token: newUser.verificationToken,
+  // });
 
   res.status(201).json({
     name: newUser.name,
