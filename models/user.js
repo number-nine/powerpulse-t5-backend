@@ -34,7 +34,8 @@ const userSchema = new Schema(
     },
     verificationToken: {
       type: String,
-      required: [true, "Verification token is required"],
+      // Disabled for development purposes
+      // required: [true, "Verification token is required"],
     },
     restorePasswordToken: {
       type: String,
@@ -52,7 +53,7 @@ const register = Joi.object({
   name: Joi.string().required(),
   email: Joi.string().pattern(patterns.email).required().messages({
     "string.base": "The email must be a string.",
-    "any.required": 'email field is required.',
+    "any.required": "email field is required.",
     "string.pattern.base": "The email must be in format test@gmail.com.",
   }),
   password: Joi.string().min(6).max(24).required(),
